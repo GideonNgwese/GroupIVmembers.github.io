@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn More</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar with Navigation Links -->
+        <aside class="sidebar">
+            <h2>Helping Hands</h2>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="mission.html">Our Mission</a>
+                <a href="learnmore.html" class="active">Learn More</a>
+                <a href="donate.html">Donate</a>
+                <a href="volunteer.html">Volunteer</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+        </aside>
+
+        <!-- Main Content for Learn More -->
+        <main class="learnmore-content">
+            <!-- Hero Section with Background Image and Title -->
+            <section class="learnmore-hero">
+                <h1>Learn More About Our Work</h1>
+                <p>Explore the story behind our mission, the impact we’ve made, and the projects we’re working on to support our community.</p>
+            </section>
+
+            <!-- Info Cards Section -->
+            <section class="info-cards">
+                <div class="card">
+                    <img src="im2.jpg" alt="Impact">
+                    <h2>Our Impact</h2>
+                    <p>Discover how our initiatives have helped transform lives and uplift communities.</p>
+                </div>
+                <div class="card">
+                    <img src="oh1.jpg" alt="History">
+                    <h2>Our History</h2>
+                    <p>Learn about the roots of Helping Hands and our journey to where we are today.</p>
+                </div>
+                <div class="card">
+                    <img src="op1.jpg" alt="Projects">
+                    <h2>Ongoing Projects</h2>
+                    <p>See the projects we’re currently working on and how you can get involved.</p>
+                </div>
+            </section>
+
+            <!-- Accordion Section for Additional Information -->
+            <section class="accordion">
+                <div class="accordion-item">
+                    <button class="accordion-toggle">How We Operate</button>
+                    <div class="accordion-content">
+                        <p>Helping Hands operates with a transparent and community-driven approach, relying on donations, volunteers, and partnerships to carry out our mission.</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <button class="accordion-toggle">Ways to Get Involved</button>
+                    <div class="accordion-content">
+                        <p>Join us as a volunteer, contribute through donations, or help spread awareness to support our mission and make an impact.</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <button class="accordion-toggle">Meet Our Team</button>
+                    <div class="accordion-content">
+                        <p>Our team is made up of dedicated individuals who are passionate about creating change and supporting those in need.</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        // JavaScript for Accordion Toggle
+        const accordions = document.querySelectorAll('.accordion-toggle');
+        accordions.forEach((accordion) => {
+            accordion.addEventListener('click', function () {
+                this.classList.toggle('active');
+                const content = this.nextElementSibling;
+                content.style.maxHeight = content.style.maxHeight ? null : content.scrollHeight + 'px';
+            });
+        });
+    </script>
+</body>
+</html>

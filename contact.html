@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Helping Hands</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Active Navigation Link */
+.sidebar nav a.active {
+    background-color: #2563eb;
+    color: white;
+    font-weight: bold;
+}
+
+/* Hero Section */
+.hero-section {
+    text-align: center;
+    padding: 20px;
+    background-color: #1e3a8a;
+    color: white;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+/* Contact Info Section */
+.contact-info {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.contact-info h2 {
+    margin-bottom: 20px;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.info-card {
+    background-color: #f3f4f6;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.info-card h3 {
+    margin-bottom: 10px;
+    color: #1e3a8a;
+}
+
+/* Contact Form Section */
+.contact-form-section {
+    background-color: #f9fafb;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px 0;
+}
+
+.contact-form-section h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+form {
+    max-width: 500px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+form label {
+    font-weight: bold;
+}
+
+form input, form textarea {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+form textarea {
+    resize: none;
+}
+
+form button {
+    background-color: #2563eb;
+    color: white;
+    padding: 10px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+form button:hover {
+    background-color: #1e40af;
+}
+
+/* Follow Us Section */
+.follow-us {
+    text-align: center;
+    padding: 20px;
+    margin-top: 20px;
+    background-color: #e5e7eb;
+    border-radius: 10px;
+}
+
+.follow-us h2 {
+    margin-bottom: 20px;
+}
+
+.social-icons a {
+    display: inline-block;
+    margin: 0 10px;
+    width: 40px;
+    height: 40px;
+}
+
+.social-icons img {
+    width: 100%;
+    border-radius: 50%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.social-icons a:hover img {
+    transform: scale(1.1);
+    transition: transform 0.2s;
+}
+
+    </style>
+</head>
+<body>
+    <div class="container"> 
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <h2>Helping Hands</h2>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="mission.html">Our Mission</a>
+                <a href="donate.html">Donate</a>
+                <a href="volunteer.html">Volunteer</a>
+                <a href="stories.html">Impact Stories</a>
+                <a href="contact.html" class="active">Contact</a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Hero Section -->
+            <section class="hero-section">
+                <h1>Contact Us</h1>
+                <p>We’d love to hear from you! Reach out to us with any questions, suggestions, or support.</p>
+            </section>
+
+            <!-- Contact Information -->
+            <section class="contact-info">
+                <h2>Get in Touch</h2>
+                <div class="info-grid">
+                    <div class="info-card">
+                        <h3>Email Us</h3>
+                        <p>ngwesegideon0@gmail.com</p>
+                    </div>
+                    <div class="info-card">
+                        <h3>Call Us</h3>
+                        <p>+237677848145</p>
+                    </div>
+                    <div class="info-card">
+                        <h3>Visit Us</h3>
+                        <p>Buea, Cameroon</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contact Form -->
+            <section class="contact-form-section">
+                <h2>Send Us a Message</h2>
+                <form action="process-contact.php" method="POST">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" placeholder="Enter your email address" required>
+
+                    <label for="message">Your Message</label>
+                    <textarea id="message" name="message" rows="5" placeholder="Write your message here..." required></textarea>
+
+                    <button type="submit">Send Message</button>
+                </form>
+            </section>
+
+            <!-- Follow Us Section -->
+            <section class="follow-us">
+                <h2>Follow Us</h2>
+                <div class="social-icons">
+                    <a href="#"><img src="facebook-icon.png" alt="Facebook"></a>
+                    <a href="#"><img src="twitter-icon.png" alt="Twitter"></a>
+                    <a href="#"><img src="instagram-icon.png" alt="Instagram"></a>
+                    <a href="#"><img src="linkedin-icon.png" alt="LinkedIn"></a>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+</html>

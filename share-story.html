@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Share Your Story - Helping Hands</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Active Navigation Link */
+.sidebar nav a.active {
+    background-color: #2563eb;
+    color: white;
+    font-weight: bold;
+}
+
+/* Hero Section */
+.hero-section {
+    text-align: center;
+    padding: 20px;
+    background-color: #1e3a8a;
+    color: white;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+/* Story Form Section */
+.story-form-section {
+    background-color: #f9fafb;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px 0;
+    text-align: center;
+}
+
+.story-form-section h2 {
+    margin-bottom: 20px;
+}
+
+form {
+    max-width: 500px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+form label {
+    font-weight: bold;
+}
+
+form input, form textarea {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+form textarea {
+    resize: none;
+}
+
+form input[type="file"] {
+    padding: 5px;
+    border: none;
+}
+
+form button {
+    background-color: #2563eb;
+    color: white;
+    padding: 10px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+form button:hover {
+    background-color: #1e40af;
+}
+
+/* Guidelines Section */
+.guidelines {
+    background-color: #e5e7eb;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px 0;
+    text-align: left;
+}
+
+.guidelines h2 {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.guidelines ul {
+    list-style-type: disc;
+    padding-left: 20px;
+}
+
+.guidelines ul li {
+    margin: 10px 0;
+}
+
+    </style>
+</head>
+<body>
+    <div class="container"> 
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <h2>Helping Hands</h2>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="mission.html">Our Mission</a>
+                <a href="donate.html">Donate</a>
+                <a href="volunteer.html">Volunteer</a>
+                <a href="stories.html">Impact Stories</a>
+                <a href="share-story.html" class="active">Share Your Story</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Hero Section -->
+            <section class="hero-section">
+                <h1>Share Your Story</h1>
+                <p>Your journey can inspire others. Tell us how Helping Hands has made a difference in your life.</p>
+            </section>
+
+            <!-- Story Submission Form -->
+            <section class="story-form-section">
+                <h2>Submit Your Story</h2>
+                <form action="process-story.php" method="POST" enctype="multipart/form-data">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" placeholder="Enter your email address" required>
+
+                    <label for="story">Your Story</label>
+                    <textarea id="story" name="story" rows="6" placeholder="Share your experience..." required></textarea>
+
+                    <label for="photo">Upload a Photo (Optional)</label>
+                    <input type="file" id="photo" name="photo" accept="image/*">
+
+                    <button type="submit">Submit Story</button>
+                </form>
+            </section>
+
+            <!-- Guidelines Section -->
+            <section class="guidelines">
+                <h2>Story Sharing Guidelines</h2>
+                <ul>
+                    <li>Ensure your story is genuine and personal.</li>
+                    <li>Keep your story within 500 words.</li>
+                    <li>Avoid sharing sensitive or private information.</li>
+                    <li>Feel free to upload a relevant photo to complement your story.</li>
+                </ul>
+            </section>
+        </main>
+    </div>
+</body>
+</html>

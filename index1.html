@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Helping Hands - Non-Profit Organization</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+        <h2>Helping Hands</h2>
+        <nav>
+            <a href="mission.html">Our Mission</a>>
+            <a href="#impact">Our Impact</a>
+            <a href="#donate">Donate</a>
+            <a href="#volunteer">Volunteer</a>
+            <a href="#stories">Impact Stories</a>
+            <a href="#contact">Contact Us</a>
+        </nav>
+    </aside>
+
+
+
+    <!-- Main Content Area -->
+    <div class="main-content">
+        <!-- Background Image Section -->
+        <section class="hero-section">
+            <h1 >Making a Difference, One Step at a Time</h1>
+            <p>Join us in helping homeless individuals find hope and support through our community efforts.</p>
+            <button onclick="document.location.href='#donate'">Donate Now</button>
+        </section>
+
+       <!-- Mission Section with Background Image -->
+<section id="mission" class="mission-section">
+    <div class="mission-content">
+        <h2>Our Mission</h2>
+        <p>Helping Hands is dedicated to supporting homeless individuals in our community by providing shelter, food, medical assistance, and pathways to sustainable employment. Our mission is to make a tangible difference in the lives of those who need it most, with a compassionate and holistic approach.</p>
+    </div>
+</section>
+
+
+        <!-- Impact Section -->
+        <section id="impact">
+            <h2>Our Impact</h2>
+            <p>With the help of our volunteers and donors, we've provided shelter, food, and support to hundreds...</p>
+        </section>
+
+        <!-- Donation Form Section -->
+        <section id="donate">
+            <h2>Donate</h2>
+            <form id="donation-form">
+                <label for="donation-amount">Amount ($):</label>
+                <input type="number" id="donation-amount" name="amount" required>
+
+                <label for="donation-purpose">Allocate to:</label>
+                <select id="donation-purpose" name="purpose">
+                    <option value="shelter">Shelter</option>
+                    <option value="food">Food</option>
+                    <option value="clothing">Clothing</option>
+                    <option value="medical">Medical Assistance</option>
+                </select>
+
+                <label for="donor-name">Your Name:</label>
+                <input type="text" id="donor-name" name="name" required>
+
+                <label for="donor-email">Email:</label>
+                <input type="email" id="donor-email" name="email" required>
+
+                <button type="submit">Donate Now</button>
+            </form>
+        </section>
+
+        <!-- Volunteer Opportunities Section -->
+        <section id="volunteer">
+            <h2>Volunteer Opportunities</h2>
+            <div class="opportunity">
+                <h3>Community Outreach</h3>
+                <p>Help us reach out to those in need...</p>
+                <button class="sign-up-btn">Sign Up</button>
+            </div>
+        </section>
+
+        <!-- Impact Stories Section -->
+        <section id="stories">
+            <h2>Impact Stories</h2>
+            <p>Read how our efforts have transformed lives...</p>
+            <!-- Add stories here -->
+        </section>
+
+        <!-- Footer Section -->
+        <footer>
+            <p>&copy; 2024 Helping Hands. All rights reserved.</p>
+            <div class="social-links">
+                <a href="#">Facebook</a> | 
+                <a href="#">Twitter</a> | 
+                <a href="#">Instagram</a>
+            </div>
+        </footer>
+    </div>
+
+    <script src="scripts.js"></script>
+</body>
+</html>

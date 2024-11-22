@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Mission</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar with Navigation Links -->
+        <aside class="sidebar">
+            <h2>Helping Hands</h2>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="mission.html" class="active">Our Mission</a>
+                <a href="donate.html">Donate</a>
+                <a href="volunteer.html">Volunteer</a>
+                <a href="contact.html">Contact</a>
+                <a href="learnmore.html">Learn More</a>
+            </nav>
+        </aside>
+
+        <!-- Main Mission Content -->
+        <main class="mission-content">
+            <section class="mission-section" id="mission-section">
+                <div class="mission-overlay">
+                    <h1>Our Mission</h1>
+                    <p>
+                        At Helping Hands, we're dedicated to empowering homeless individuals with compassion, care, and essential resources. Our mission is to provide shelter, support, and a pathway to a brighter future, fostering hope and rebuilding stronger, more resilient communities
+                    </p>
+                    <p>
+                        Join us as we continue our journey to create sustainable change, one step at a time.
+                        Together, we can empower individuals, uplift communities, and bring positive transformation.
+                    </p>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        // JavaScript for rotating background images
+        const images = [
+            'images/down4.jpg',  // Replace with actual paths to your images
+            'images/down5.jpg',
+            'images/down6.jpg'
+        ];
+        
+        let currentImageIndex = 0;
+        const missionSection = document.getElementById('mission-section');
+
+        function changeBackgroundImage() {
+            currentImageIndex = (currentImageIndex + 1) % images.length;
+            missionSection.style.backgroundImage = `url('${images[currentImageIndex]}')`;
+        }
+
+        // Change background every 5 seconds
+        setInterval(changeBackgroundImage, 3000);
+    </script>
+</body>
+</html>

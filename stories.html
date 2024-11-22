@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Impact Stories - Helping Hands</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Active Nav Link */
+.sidebar nav a.active {
+    background-color: #3b82f6;
+    color: white;
+    font-weight: bold;
+}
+
+/* Hero Section */
+.hero-section {
+    text-align: center;
+    padding: 20px;
+    background-color: #1f2937;
+    color: white;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+/* Stories Section */
+.stories-section {
+    margin: 20px 0;
+}
+
+.stories-section h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.stories-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.story-card {
+    background: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.story-card:hover {
+    transform: scale(1.05);
+}
+
+.story-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+.story-card h3 {
+    color: #1f2937;
+    margin-bottom: 10px;
+}
+
+.story-card a {
+    color: #3b82f6;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.story-card a:hover {
+    color: #1f2937;
+}
+
+/* Testimonials Section */
+.testimonials {
+    background-color: #f3f4f6;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px 0;
+}
+
+.testimonials h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.carousel {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: 20px;
+}
+
+.testimonial {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    min-width: 300px;
+    text-align: center;
+}
+
+.testimonial p {
+    font-style: italic;
+    margin-bottom: 10px;
+}
+
+.testimonial span {
+    color: #1f2937;
+    font-weight: bold;
+}
+
+/* CTA Section */
+.cta-section {
+    text-align: center;
+    padding: 20px;
+    background-color: #1f2937;
+    color: white;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+.cta-section button {
+    background-color: #3b82f6;
+    color: white;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.cta-section button:hover {
+    background-color: #2563eb;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hero-section {
+        padding: 15px;
+    }
+
+    .stories-grid {
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+
+    .story-card {
+        padding: 15px;
+    }
+
+    .carousel {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .testimonial {
+        min-width: 100%;
+    }
+
+    .cta-section button {
+        padding: 12px 25px;
+    }
+}
+
+/* Extra Small Devices */
+@media (max-width: 480px) {
+    .hero-section {
+        padding: 10px;
+    }
+
+    .stories-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .story-card {
+        padding: 10px;
+    }
+
+    .carousel {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .testimonial {
+        min-width: 100%;
+    }
+
+    .cta-section button {
+        font-size: 0.9rem;
+        padding: 10px 20px;
+    }
+}
+
+    </style>
+</head>
+<body>
+    <div class="container"> 
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <h2>Helping Hands</h2>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="mission.html">Our Mission</a>
+                <a href="donate.html">Donate</a>
+                <a href="volunteer.html">Volunteer</a>
+                <a href="stories.html" class="active">Impact Stories</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <section class="hero-section">
+                <h1>Impact Stories</h1>
+                <p>Hear inspiring stories of hope and transformation from individuals we’ve helped.</p>
+            </section>
+
+            <section class="stories-section">
+                <h2>Featured Stories</h2>
+                <div class="stories-grid">
+                    <article class="story-card">
+                        <img src="down17.jpg" alt="Story 1">
+                        <h3>John's Journey</h3>
+                        <p>After years of living on the streets, John found hope through our programs and rebuilt his life.</p>
+                        <a href="#">Read More</a>
+                    </article>
+                    <article class="story-card">
+                        <img src="down20.jpg" alt="Story 2">
+                        <h3>Maria's New Start</h3>
+                        <p>Maria overcame challenges with our support and now inspires others to do the same.</p>
+                        <a href="#">Read More</a>
+                    </article>
+                    <article class="story-card">
+                        <img src="down19.jpg" alt="Story 3">
+                        <h3>The Smith Family</h3>
+                        <p>The Smith family found stability and hope after years of financial struggles.</p>
+                        <a href="#">Read More</a>
+                    </article>
+                </div>
+            </section>
+
+            <section class="testimonials">
+                <h2>Testimonials</h2>
+                <div class="carousel">
+                    <div class="testimonial">
+                        <p>"Helping Hands changed my life forever. I’m so grateful for their care and support!"</p>
+                        <span>- Sarah D.</span>
+                    </div>
+                    <div class="testimonial">
+                        <p>"I didn’t know where to turn, but this organization gave me hope and a second chance."</p>
+                        <span>- Michael J.</span>
+                    </div>
+                    <div class="testimonial">
+                        <p>"The programs offered by Helping Hands are life-changing. Thank you!"</p>
+                        <span>- Emily R.</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="cta-section">
+                <h2>Have a Story to Share?</h2>
+                <p>Your story could inspire others to join the cause. Share your journey with us.</p>
+                <button onclick="document.location.href='share-story.html'">Share Your Story</button>
+            </section>
+        </main>
+    </div>
+</body>
+</html>
