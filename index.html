@@ -3,249 +3,138 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NGO Website by Gideon/Patrick</title>
+    <title>Helping Hands | NGO Website</title>
     <link rel="stylesheet" href="css/styles.css">
     <style>
-        /* Styles for the Sign-In/Sign-Up Section */
-        .auth-section {
+        /* General Body Styling */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f7fc;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Skip Link for Accessibility */
+        .skip-to-main-content {
             position: absolute;
-            top: 10px;
-            right: 20px;
-            display: flex;
-            gap: 15px;
-        }
-
-        .auth-section a {
+            left: -9999px;
+            z-index: 999;
+            padding: 1em;
+            background-color: #fff;
+            color: #2563eb;
             text-decoration: none;
-            background-color: #2563eb;
-            color: white;
-            padding: 10px 15px;
-            border-radius: 5px;
-            font-size: 14px;
-            font-weight: bold;
-            text-align: center;
-            transition: background-color 0.3s ease;
         }
 
-        .auth-section a:hover {
-            background-color: #1e40af;
+        .skip-to-main-content:focus {
+            left: 50%;
+            transform: translateX(-50%);
         }
 
-        /* Container Styles */
+        /* Container Styling */
         .container {
-            position: relative;
             display: flex;
         }
 
-        /* Sidebar Styles */
+        /* Sidebar Styling */
         .sidebar {
             width: 250px;
-            background-color: #333;
+            background: linear-gradient(135deg, #1e3a8a, #2563eb);
+            color: #fff;
             padding: 20px;
+            text-align: center;
             box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
         }
 
         .sidebar h2 {
+            font-size: 1.8rem;
+            border-bottom: 2px solid #fff;
+            padding-bottom: 10px;
             margin-bottom: 20px;
         }
 
         .sidebar nav a {
             display: block;
             text-decoration: none;
-            color: white;
-            margin: 20px 0;
-            padding: 15px;
+            color: #fff;
+            background-color: rgba(255, 255, 255, 0.2);
+            margin: 10px 0;
+            padding: 10px;
             border-radius: 5px;
-            transition: background-color 0.3s ease;
+            font-size: 16px;
+            transition: all 0.3s ease;
         }
 
         .sidebar nav a:hover {
-            background-color: #2563eb;
-            color: white;
-        }
-
-        /* Main Content Styles */
-        .main-content {
-            flex-grow: 1;
-            padding: 20px;
-            background-color: #f9fafb;
-        }
-
-        .hero-section {
-            text-align: center;
-            padding: 20px;
-            background-color: #1e3a8a;
-            color: white;
-            border-radius: 8px;
-            margin-bottom: 20px;
-        }
-
-        .hero-section button {
-            background-color: #2563eb;
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            border-radius: 5px;
-            font-size: 16px;
-            cursor: pointer;
-        }
-
-        .hero-section button:hover {
-            background-color: #1e40af;
-        }
-
-        .dashboard-sections {
-            display: flex;
-            gap: 20px;
-            justify-content: space-around;
-        }
-
-        .dashboard-card {
-            background-color: white;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            border-radius: 8px;
-            width: 30%;
-            text-align: center;
-        }
-
-        .dashboard-card img {
-            max-width: 100%;
-            border-radius: 8px;
-            margin-bottom: 15px;
-        }
-
-        .dashboard-card h3 {
-            margin-bottom: 10px;
-        }
-
-        .dashboard-card a {
-            text-decoration: none;
+            background-color: #fff;
             color: #2563eb;
             font-weight: bold;
         }
-        /* Responsive Styles */
-@media (max-width: 768px) {
-    /* Adjust container to stack vertically */
-    .container {
-        flex-direction: column;
-    }
 
-    /* Adjust sidebar width and layout */
-    .sidebar {
-        width: 100%;
-        padding: 15px;
-        text-align: center;
-    }
+        /* Main Content Styling */
+        .main-content {
+            flex-grow: 1;
+            padding: 20px;
+            background: #f9fafb;
+        }
 
-    .sidebar nav a {
-        margin: 10px 0;
-        padding: 10px;
-    }
-
-    /* Adjust main content padding */
-    .main-content {
-        padding: 15px;
-    }
-
-    /* Adjust hero section text and button size */
-    .hero-section {
-        padding: 15px;
-    }
-
-    .hero-section button {
-        font-size: 14px;
-        padding: 8px 12px;
-    }
-
-    /* Adjust dashboard card layout */
-    .dashboard-sections {
-        flex-direction: column;
-        gap: 15px;
-    }
-
-    .dashboard-card {
-        width: 100%;
-    }
-
-    /* Adjust auth-section layout */
-    .auth-section {
-        position: static;
-        justify-content: center;
-        margin-bottom: 10px;
-    }
-
-    .auth-section a {
-        font-size: 12px;
-        padding: 8px 10px;
-    }
-}
-
-@media (max-width: 480px) {
-    /* Further adjust sidebar and main content for very small screens */
-    .sidebar {
-        padding: 10px;
-    }
-
-    .sidebar nav a {
-        padding: 8px;
-        font-size: 14px;
-    }
-
-    .main-content {
-        padding: 10px;
-    }
-
-    .hero-section {
-        padding: 10px;
-    }
-
-    .hero-section button {
-        font-size: 12px;
-        padding: 6px 8px;
-    }
-
-    /* Adjust dashboard card spacing and width */
-    .dashboard-sections {
-        gap: 10px;
-    }
-
-    .dashboard-card {
-        padding: 15px;
-    }
-
-    /* Adjust auth-section spacing */
-    .auth-section a {
-        padding: 6px 8px;
-        font-size: 12px;
-    }
-}
-
-        /* Add new styles for improved features */
+        /* Hero Section Styling */
         .hero-section {
-            /* Existing styles remain... */
-            background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
-            padding: 40px 20px;
-            margin: 20px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            background: linear-gradient(135deg, #2563eb, #1e3a8a);
+            color: #fff;
+            padding: 50px 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
 
         .hero-section h1 {
             font-size: 2.5rem;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
             margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
         }
 
         .hero-section p {
             font-size: 1.2rem;
-            margin-bottom: 1.5rem;
             max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
+            margin: 0 auto 1.5rem;
+        }
+
+        .hero-section button {
+            background-color: #ff6b6b;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 16px;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .hero-section button:hover {
+            background-color: #ff4757;
+            transform: scale(1.05);
+        }
+
+        /* Dashboard Section Styling */
+        .dashboard-sections {
+            display: flex;
+            gap: 20px;
+            justify-content: space-around;
+            flex-wrap: wrap;
         }
 
         .dashboard-card {
-            /* Existing styles remain... */
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            width: 30%;
+            min-width: 250px;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
@@ -255,70 +144,52 @@
         }
 
         .dashboard-card img {
-            /* Existing styles remain... */
+            max-width: 100%;
             height: 200px;
             object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 10px;
         }
 
-        .sidebar h2 {
-            color: #fff;
-            font-size: 1.8rem;
-            padding-bottom: 10px;
-            border-bottom: 2px solid #2563eb;
+        .dashboard-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
         }
 
-        /* Add animation for buttons */
-        .hero-section button, .auth-section a {
-            position: relative;
-            overflow: hidden;
+        .dashboard-card p {
+            font-size: 1rem;
+            color: #666;
+            margin-bottom: 15px;
         }
 
-        .hero-section button:after, .auth-section a:after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            transition: width 0.3s ease, height 0.3s ease;
-        }
-
-        .hero-section button:hover:after, .auth-section a:hover:after {
-            width: 200px;
-            height: 200px;
-        }
-
-        /* Improve accessibility */
-        .skip-to-main-content {
-            position: absolute;
-            left: -9999px;
-            z-index: 999;
-            padding: 1em;
-            background-color: white;
-            color: #2563eb;
+        .dashboard-card a {
             text-decoration: none;
+            color: #2563eb;
+            font-weight: bold;
         }
 
-        .skip-to-main-content:focus {
-            left: 50%;
-            transform: translateX(-50%);
+        .dashboard-card a:hover {
+            color: #1e3a8a;
+            text-decoration: underline;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .dashboard-card {
+                width: 100%;
+                margin-bottom: 20px;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Add skip link for accessibility -->
     <a href="#main-content" class="skip-to-main-content">Skip to main content</a>
 
     <div class="container">
-        <!-- Sign-In/Sign-Up Section -->
-        <div class="auth-section">
-            <a href="signin.html">Sign In</a>
-            <a href="signup.html">Sign Up</a>
-        </div>
-
         <!-- Sidebar -->
         <aside class="sidebar">
             <h2>Helping Hands</h2>
@@ -332,41 +203,112 @@
             </nav>
         </aside>
 
-        <!-- Main Content Area -->
+        <!-- Main Content -->
         <main class="main-content" id="main-content">
             <section class="hero-section">
                 <h1>Welcome to Helping Hands</h1>
                 <p>Making a difference in the lives of the homeless, one step at a time. Join us in creating positive change in our community.</p>
-                <button onclick="document.location.href='donate.html'" aria-label="Donate Now">
-                    Donate Now
-                </button>
+                <button onclick="document.location.href='donate.html'">Donate Now</button>
             </section>
             
             <section class="dashboard-sections">
-                <!-- Update the dashboard cards with more semantic HTML and better accessibility -->
                 <div class="dashboard-card">
-                    <img src="hc1.jpg" alt="Volunteers helping community members" loading="lazy">
+                    <img src="hc1.jpg" alt="Community Assistance">
                     <h3>Our Community Efforts</h3>
                     <p>Learn more about how we're helping the community through various initiatives and outreach programs.</p>
-                    <a href="community.html" aria-label="Learn more about our community efforts">Learn More</a>
+                    <a href="community.html">Learn More</a>
                 </div>
                 <div class="dashboard-card">
-                    <img src="vu1.jpg" alt="Group of volunteers working together" loading="lazy">
+                    <img src="vu1.jpg" alt="Volunteer Work">
                     <h3>Volunteer Opportunities</h3>
                     <p>Join our dedicated team of volunteers and help make a lasting impact in your community.</p>
-                    <a href="volunteer.html" aria-label="Learn about volunteer opportunities">Get Involved</a>
+                    <a href="volunteer.html">Get Involved</a>
                 </div>
                 <div class="dashboard-card">
-                    <img src="ip1.jpg" alt="Success stories from our community" loading="lazy">
+                    <img src="ip1.jpg" alt="Impact Stories">
                     <h3>Impact Stories</h3>
                     <p>Discover inspiring stories of hope and transformation from the individuals we've helped.</p>
-                    <a href="stories.html" aria-label="Read our impact stories">Read Stories</a>
+                    <a href="stories.html">Read Stories</a>
                 </div>
             </section>
         </main>
     </div>
-
-    <!-- Add this line just before closing body tag -->
-    <script src="js/main.js"></script>
+    <script>
+        // JavaScript code to enhance interactivity and dynamics
+    
+        // Function to display a dynamic welcome message
+        document.addEventListener("DOMContentLoaded", () => {
+            const welcomeMessage = document.createElement("p");
+            const currentHour = new Date().getHours();
+            let message = "Welcome!";
+    
+            if (currentHour < 12) {
+                message = "Good morning! Welcome to Helping Hands.";
+            } else if (currentHour < 18) {
+                message = "Good afternoon! Welcome to Helping Hands.";
+            } else {
+                message = "Good evening! Welcome to Helping Hands.";
+            }
+    
+            welcomeMessage.textContent = message;
+            welcomeMessage.style.fontSize = "1.2rem";
+            welcomeMessage.style.marginTop = "10px";
+            welcomeMessage.style.color = "#2563eb";
+    
+            const heroSection = document.querySelector(".hero-section");
+            heroSection.appendChild(welcomeMessage);
+        });
+    
+        // Smooth scroll for sidebar links
+        document.querySelectorAll(".sidebar nav a").forEach(link => {
+            link.addEventListener("click", event => {
+                const targetId = link.getAttribute("href").split(".html")[0];
+                const targetElement = document.querySelector(`#${targetId}`);
+                if (targetElement) {
+                    event.preventDefault();
+                    targetElement.scrollIntoView({ behavior: "smooth" });
+                }
+            });
+        });
+    
+        // Highlight the active link in the sidebar
+        document.querySelectorAll(".sidebar nav a").forEach(link => {
+            link.addEventListener("click", () => {
+                document.querySelectorAll(".sidebar nav a").forEach(l => l.classList.remove("active"));
+                link.classList.add("active");
+            });
+        });
+    
+        // Add hover animations for dashboard cards
+        document.querySelectorAll(".dashboard-card").forEach(card => {
+            card.addEventListener("mouseover", () => {
+                card.style.transform = "scale(1.05)";
+                card.style.boxShadow = "0 6px 20px rgba(0, 0, 0, 0.2)";
+            });
+    
+            card.addEventListener("mouseleave", () => {
+                card.style.transform = "scale(1)";
+                card.style.boxShadow = "0 4px 15px rgba(0, 0, 0, 0.1)";
+            });
+        });
+    
+        // Alert message when user clicks on "Donate Now"
+        const donateButton = document.querySelector(".hero-section button");
+        donateButton.addEventListener("click", () => {
+            alert("Thank you for your generosity! Redirecting to the Donate page...");
+        });
+    
+        // Real-time date display in the sidebar
+        const sidebar = document.querySelector(".sidebar");
+        const dateElement = document.createElement("p");
+        dateElement.style.color = "#fff";
+        dateElement.style.marginTop = "15px";
+        setInterval(() => {
+            const now = new Date();
+            dateElement.textContent = `Today's Date: ${now.toLocaleDateString()} - ${now.toLocaleTimeString()}`;
+        }, 1000);
+        sidebar.appendChild(dateElement);
+    </script>
+    
 </body>
 </html>
