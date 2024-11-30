@@ -1,90 +1,156 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sign In</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color:white;
-      margin:0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-    }
-    .container {
-      background:white;
-      padding: 20px 30px;
-      border-radius: 8px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      width: 100%;
-      max-width: 400px;
-    }
-    h2 {
-      margin: 0 0 20px;
-      text-align: center;
-      color:blue;
-    }
-    .form-group {
-      margin-bottom: 30px;
-    }
-    label {
-      display: block;
-      font-weight: bold;
-      margin-bottom: 5px;
-    }
-    input {
-      width: 105%;
-      padding: 10px;
-      border: 1px solid black;
-      border-radius: 5px;
-      box-sizing: border-box;
-    }
-    button {
-      width: 100%;
-      padding: 10px;
-      background-color:blue;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      font-size: 16px;
-      cursor: pointer;
-    }
-    button:hover {
-      background-color: #0056b3;
-    }
-    .link {
-      text-align: center;
-      margin-top: 10px;
-    }
-    .link a {
-      color: #007bff;
-      text-decoration: none;
-    }
-    .link a:hover {
-      text-decoration: underline;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up and Sign In</title>
+    <style>
+        /* General Styling */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #000000; /* Black Background */
+    color: #FFFFFF; /* White Text */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Auth Container */
+.auth-container {
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* Form Box */
+.form-box {
+    background-color: #1A1A1A; /* Slightly lighter black for contrast */
+    border-radius: 8px;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+.form-box h1 {
+    margin-bottom: 20px;
+    color: #00BFFF; /* Light Blue Accent */
+}
+
+/* Input Fields */
+form input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #00BFFF; /* Light Blue Border */
+    border-radius: 6px;
+    background-color: #000000; /* Match Black Background */
+    color: #FFFFFF; /* White Text */
+    font-size: 16px;
+}
+
+form input:focus {
+    outline: none;
+    border-color: #00E5FF; /* Slightly brighter blue on focus */
+    box-shadow: 0 0 5px #00E5FF;
+}
+
+/* Buttons */
+form button {
+    width: 100%;
+    padding: 12px;
+    background-color: #00BFFF;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 6px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+form button:hover {
+    background-color: #00E5FF; /* Brighter Blue on Hover */
+}
+
+/* Footer Text */
+form p {
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+form a {
+    color: #00BFFF;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+form a:hover {
+    text-decoration: underline;
+}
+
+    </style>
 </head>
 <body>
-  <div class="container">
-    <h2>Sign In</h2>
-    <form action="/login" method="POST">
-      <div class="form-group">
-        <label for="email">Email</label>
-        <input type="email" id="email" name="email" required>
-      </div>
-      <div class="form-group">
-        <label for="password">Password</label>
-        <input type="password" id="password" name="password" required>
-      </div>
-      <button type="submit">Sign In</button>
-      <div class="link">
-        <p>Don't have an account? <a href="/signup">Sign Up</a></p>
-      </div>
-    </form>
-  </div>
+    <!-- Sign-Up Section -->
+    <div class="auth-container" id="signup">
+        <div class="form-box">
+            <h1>Create an Account</h1>
+            <form id="signup-form">
+                <input type="text" placeholder="Full Name" required>
+                <input type="email" placeholder="Email Address" required>
+                <input type="password" placeholder="Password" required>
+                <input type="password" placeholder="Confirm Password" required>
+                <button type="submit">Sign Up</button>
+            </form>
+            <p id="signup-message"></p>
+            <p>Already have an account? <a href="#signin">Sign In</a></p>
+        </div>
+    </div>
+
+    <!-- Sign-In Section -->
+    <div class="auth-container" id="signin">
+        <div class="form-box">
+            <h1>Welcome Back</h1>
+            <form id="signin-form">
+                <input type="email" placeholder="Email Address" required>
+                <input type="password" placeholder="Password" required>
+                <button type="submit">Sign In</button>
+            </form>
+            <p id="signin-message"></p>
+            <p>Don't have an account? <a href="#signup">Sign Up</a></p>
+        </div>
+    </div>
+
+    <script>// Get references to forms and messages
+        const signupForm = document.getElementById('signup-form');
+        const signinForm = document.getElementById('signin-form');
+        const signupMessage = document.getElementById('signup-message');
+        const signinMessage = document.getElementById('signin-message');
+        
+        // Simulate signup success
+        signupForm.addEventListener('submit', (event) => {
+            event.preventDefault(); // Prevent form submission
+            signupMessage.textContent = "Sign Up Successful! Redirecting...";
+            signupMessage.style.color = "#00BFFF"; // Light Blue message
+            setTimeout(() => {
+                // Simulate redirection to the main dashboard
+                window.location.href = "index.html"; // Replace with your dashboard URL
+            }, 2000);
+        });
+        
+        // Simulate signin success
+        signinForm.addEventListener('submit', (event) => {
+            event.preventDefault(); // Prevent form submission
+            signinMessage.textContent = "Sign In Successful! Redirecting...";
+            signinMessage.style.color = "#00BFFF"; // Light Blue message
+            setTimeout(() => {
+                // Simulate redirection to the main dashboard
+                window.location.href = "index.html"; // Replace with your dashboard URL
+            }, 2000);
+        });
+        </script>
 </body>
 </html>
