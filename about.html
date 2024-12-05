@@ -1,0 +1,1187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart NGO - About Us</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        /* Internal CSS */
+        :root {
+            --themeRed: #e43a47;
+            --grey: #efefef;
+        }
+
+        body {
+            font-family: "Poppins", sans-serif;
+            font-weight: 200;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url("../images/banner.jpg");
+            background-size: cover;
+            background-attachment: fixed;
+            color: #ffffff;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: rgba(0,0,0,0.6);
+            position: fixed;
+            width: 100%;
+            z-index: 2;
+        }
+
+        .container {
+            width: 1140px;
+            margin: auto;
+            padding: 0 15px;
+        }
+
+        .logo {
+            padding: 15px 0;
+            height: 75px;
+        }
+
+        .logo img {
+            height: 100%;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            height: 75px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 10px;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            position: relative;
+        }
+
+        nav ul li a {
+            color: #ffffff;
+            text-decoration: none;
+            padding: 10px 20px;
+            text-transform: uppercase;
+            font-size: 16px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            display: inline-block;
+            position: relative;
+        }
+
+        nav ul li a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--themeRed);
+            left: 0;
+            bottom: 0;
+            transition: width 0.3s ease;
+        }
+
+        nav ul li a:hover:after {
+            width: 100%;
+        }
+
+        nav ul li a:hover {
+            background-color: var(--themeRed);
+            color: #ffffff;
+            border-radius: 3px;
+            transform: translateY(-2px);
+            box-shadow: 0 2px 5px rgba(228, 58, 71, 0.3);
+        }
+
+        /* Active link style */
+        nav ul li a.active {
+            color: var(--themeRed);
+        }
+
+        nav ul li a.active:after {
+            width: 100%;
+        }
+
+        /* Update header container for better alignment */
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        /* Logo adjustments */
+        header .container .logo {
+            padding: 10px 0;
+            height: 65px;
+        }
+
+        /* Add responsive menu button */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 10px;
+        }
+
+        /* Responsive styles */
+        @media screen and (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 75px;
+                left: 0;
+                width: 100%;
+                background: rgba(0,0,0,0.9);
+                flex-direction: column;
+                padding: 20px 0;
+                text-align: center;
+            }
+
+            nav ul.active {
+                display: flex;
+            }
+
+            nav ul li {
+                margin: 10px 0;
+            }
+
+            nav ul li a {
+                padding: 10px 20px;
+                display: block;
+            }
+        }
+
+        /* About Section Styles */
+        .about-content {
+            padding: 120px 0 50px 0;
+            text-align: justify;
+            line-height: 1.6;
+        }
+
+        .sectionTitle {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #ffffff;
+            margin-bottom: 50px;
+            border-bottom: 3px solid var(--themeRed);
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+
+        .cards {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 50px;
+            margin-bottom: 50px;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 1;
+        }
+
+        .card {
+            width: 30%;
+            perspective: 1000px;
+            background: transparent;
+            margin-bottom: 30px;
+            position: relative;
+            height: 300px;
+        }
+
+        .card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+        }
+
+        .card-front, .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            padding: 25px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .card-front {
+            background: rgba(255, 255, 255, 0.1);
+            z-index: 2;
+        }
+
+        .card-back {
+            background: rgba(228, 58, 71, 0.1);
+            transform: rotateY(180deg);
+            z-index: 1;
+        }
+
+        .card-back h3 {
+            color: var(--themeRed);
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .card-back ul {
+            list-style: none;
+            padding: 0;
+            margin: 15px 0;
+        }
+
+        .card-back ul li {
+            margin: 10px 0;
+            color: #ffffff;
+        }
+
+        .card button {
+            background: var(--themeRed);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: 0.3s;
+        }
+
+        .card button:hover {
+            background: #ffffff;
+            color: var(--themeRed);
+            transform: scale(1.05);
+        }
+
+        /* Responsive adjustments */
+        @media screen and (max-width: 992px) {
+            .card {
+                width: 45%;
+                height: 320px;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .card {
+                width: 100%;
+                height: 300px;
+                margin-bottom: 40px;
+            }
+        }
+
+        /* Footer Styles */
+        footer {
+            background: linear-gradient(rgba(0,0,0,0.95), rgba(0,0,0,0.95));
+            padding: 70px 0 20px 0;
+            position: relative;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1.5fr;
+            gap: 40px;
+        }
+
+        .footer-section {
+            color: #ffffff;
+        }
+
+        .footer-section .title {
+            color: var(--themeRed);
+            font-size: 1.4rem;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-section .title:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--themeRed);
+        }
+
+        .footer-links {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .footer-links a {
+            color: #ffffff;
+            text-decoration: none;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+        }
+
+        .footer-links a:before {
+            content: '→';
+            margin-right: 10px;
+            color: var(--themeRed);
+        }
+
+        .footer-links a:hover {
+            color: var(--themeRed);
+            transform: translateX(5px);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            color: #ffffff;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 18px;
+        }
+
+        .social-links a:hover {
+            transform: translateY(-5px);
+        }
+
+        .social-links a.facebook:hover {
+            background: #3b5998;
+        }
+
+        .social-links a.whatsapp:hover {
+            background: #25d366;
+        }
+
+        .social-links a.linkedin:hover {
+            background: #0077b5;
+        }
+
+        .social-links a.twitter:hover {
+            background: #1da1f2;
+        }
+
+        .social-links a.instagram:hover {
+            background: #e4405f;
+        }
+
+        .social-links a.youtube:hover {
+            background: #ff0000;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 40px;
+            margin-top: 60px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .contact-info p {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .contact-info p i {
+            margin-right: 10px;
+            color: var(--themeRed);
+        }
+
+        /* Add these styles inside your existing <style> tag */
+        .about-text {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .about-text .main-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--themeRed);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .about-section {
+            perspective: 1000px;
+            min-height: 200px;
+            margin-bottom: 30px;
+        }
+
+        .about-section-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: left;
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+            cursor: pointer;
+        }
+
+        .about-section:hover .about-section-inner {
+            transform: rotateY(180deg);
+        }
+
+        .about-section-front, .about-section-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            padding: 25px;
+            border-radius: 10px;
+            background: rgba(0, 0, 0, 0.4);
+        }
+
+        .about-section-front {
+            background: rgba(0, 0, 0, 0.4);
+        }
+
+        .about-section-back {
+            background: rgba(228, 58, 71, 0.1);
+            transform: rotateY(180deg);
+        }
+
+        .about-section-back .additional-info {
+            color: #ffffff;
+            text-align: center;
+        }
+
+        .about-section-back .additional-info h4 {
+            color: var(--themeRed);
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        .slogan {
+            text-align: center;
+            font-size: 2rem;
+            color: #ffffff;
+            margin: 40px 0;
+            padding: 20px;
+            background: linear-gradient(45deg, transparent, rgba(228, 58, 71, 0.2), transparent);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        /* Add these responsive styles */
+        @media screen and (max-width: 1200px) {
+            .container {
+                width: 95%;
+                padding: 0 20px;
+            }
+        }
+
+        @media screen and (max-width: 992px) {
+            .cards {
+                justify-content: center;
+                gap: 20px;
+            }
+
+            .card {
+                width: 45%;
+            }
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            nav ul {
+                background: rgba(0, 0, 0, 0.95);
+                position: fixed;
+                top: 75px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 75px);
+                flex-direction: column;
+                justify-content: flex-start;
+                padding-top: 50px;
+                transition: 0.3s ease;
+            }
+
+            nav ul.active {
+                left: 0;
+            }
+
+            nav ul li {
+                margin: 15px 0;
+            }
+
+            nav ul li a {
+                font-size: 18px;
+                padding: 15px 20px;
+                width: 200px;
+                margin: 0 auto;
+                display: block;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .about-text {
+                padding: 15px;
+            }
+
+            .about-section {
+                padding: 15px;
+            }
+
+            .card {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+
+            .sectionTitle {
+                font-size: 2rem;
+            }
+
+            .main-title {
+                font-size: 1.8rem;
+            }
+        }
+
+        @media screen and (max-width: 576px) {
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .about-section h3 {
+                font-size: 1.5rem;
+            }
+
+            .about-section p {
+                font-size: 1rem;
+            }
+
+            .slogan {
+                font-size: 1.5rem;
+                padding: 15px;
+            }
+
+            header .container .logo {
+                height: 50px;
+            }
+
+            .about-content {
+                padding: 100px 0 30px 0;
+            }
+        }
+
+        /* Add smooth scrolling to the whole page */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Improve touch targets for mobile */
+        @media (hover: none) and (pointer: coarse) {
+            nav ul li a,
+            .card button {
+                padding: 15px 20px;
+            }
+
+            .menu-toggle {
+                padding: 15px;
+            }
+        }
+
+        /* Fix for iOS Safari 100vh issue */
+        @supports (-webkit-touch-callout: none) {
+            nav ul {
+                height: -webkit-fill-available;
+            }
+        }
+
+        /* Hover Effect for About Sections */
+        .about-section {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            background: rgba(0, 0, 0, 0.4);
+            padding: 25px;
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .about-section:hover {
+            background: rgba(228, 58, 71, 0.1);
+            transform: translateX(10px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Scroll to Top Button */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 40px;
+            height: 40px;
+            background: var(--themeRed);
+            border-radius: 50%;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            transition: 0.3s;
+            z-index: 1000;
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+        }
+
+        /* Image Gallery Popup */
+        .gallery-popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .gallery-popup.active {
+            display: flex;
+        }
+
+        .gallery-popup img {
+            max-width: 90%;
+            max-height: 90vh;
+            border: 3px solid #fff;
+        }
+
+        /* Highlight Text Effect */
+        .highlight {
+            position: relative;
+            display: inline-block;
+            color: var(--themeRed);
+            font-weight: 600;
+        }
+
+        .highlight::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--themeRed);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .highlight:hover::after {
+            transform: scaleX(1);
+        }
+
+        /* Card Flip Effect */
+        .card {
+            perspective: 1000px;
+            background: transparent;
+        }
+
+        .card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+        }
+
+        .card:hover .card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .card-front, .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .card-front {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .card-back {
+            background: rgba(228, 58, 71, 0.2);
+            transform: rotateY(180deg);
+        }
+
+        /* Add these styles to your existing CSS */
+        .about-section {
+            perspective: 1000px;
+            min-height: 200px;
+            margin-bottom: 30px;
+        }
+
+        .about-section-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: left;
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+            cursor: pointer;
+        }
+
+        .about-section:hover .about-section-inner {
+            transform: rotateY(180deg);
+        }
+
+        .about-section-front, .about-section-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            padding: 25px;
+            border-radius: 10px;
+            background: rgba(0, 0, 0, 0.4);
+        }
+
+        .about-section-front {
+            background: rgba(0, 0, 0, 0.4);
+        }
+
+        .about-section-back {
+            background: rgba(228, 58, 71, 0.1);
+            transform: rotateY(180deg);
+        }
+
+        .about-section-back .additional-info {
+            color: #ffffff;
+            text-align: center;
+        }
+
+        .about-section-back .additional-info h4 {
+            color: var(--themeRed);
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="images/smart logo.JPG" alt="NGO logo">
+            </div>
+            <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+            <nav>
+                <ul id="nav-menu">
+                    <li><a href="home.html">home</a></li>
+                    <li><a href="about.html" class="active">about us</a></li>
+                    <li><a href="programs.html">programs</a></li>
+                    <li><a href="educate.html">education</a></li>
+                    <li><a href="galery.html">gallery</a></li>
+                    <li><a href="join.html">join us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="about-content">
+        <div class="container">
+            <h2 class="sectionTitle">About Us</h2>
+            <div class="content">
+                <h3 class="main-title">Smart NGO: Together we can save lives.</h3>
+                <div class="about-text">
+                    <div class="about-section">
+                        <div class="about-section-inner">
+                            <div class="about-section-front">
+                                <p>SmartNgo is more than just an organization; it's a movement fueled by a shared passion and a deep belief in the power of collective action to create positive change.</p>
+                            </div>
+                            <div class="about-section-back">
+                                <div class="additional-info">
+                                    <h4>Our Foundation</h4>
+                                    <p>Built on principles of compassion, innovation, and sustainable development, we strive to create lasting change in communities across Africa.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="about-section">
+                        <div class="about-section-inner">
+                            <div class="about-section-front">
+                                <h3>Our Journey</h3>
+                                <p>Our story began in 2024 when Mac James(CEO) witnesssed firsthand the Problems of Good healthy water and Education of Africans...</p>
+                            </div>
+                            <div class="about-section-back">
+                                <div class="additional-info">
+                                    <h4>Key Milestones</h4>
+                                    <ul>
+                                        <li>2024: Foundation Established</li>
+                                        <li>First Water Project Completed</li>
+                                        <li>Educational Program Launch</li>
+                                        <li>Community Partnerships Formed</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="about-section">
+                        <div class="about-section-inner">
+                            <div class="about-section-front">
+                                <h3>Our Mission and Values</h3>
+                                <p>Smart NGO is dedicated to building good educational structures...</p>
+                                <ul>
+                                    <li>Illiteracy rate will reduce</li>
+                                    <li>Low sick rates at hospitals</li>
+                                    <li>And making Africa more advance will bring revolution to our people.</li>
+                                </ul>
+                            </div>
+                            <div class="about-section-back">
+                                <div class="additional-info">
+                                    <h4>Core Values</h4>
+                                    <ul>
+                                        <li>Integrity</li>
+                                        <li>Innovation</li>
+                                        <li>Community Focus</li>
+                                        <li>Sustainability</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="about-section">
+                        <div class="about-section-inner">
+                            <div class="about-section-front">
+                                <h3>What We Do</h3>
+                                <p>Through programs, we are working to create clean water supplies...</p>
+                            </div>
+                            <div class="about-section-back">
+                                <div class="additional-info">
+                                    <h4>Our Programs</h4>
+                                    <ul>
+                                        <li>Water Access Projects</li>
+                                        <li>Educational Support</li>
+                                        <li>Community Development</li>
+                                        <li>Health Initiatives</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="about-section">
+                        <div class="about-section-inner">
+                            <div class="about-section-front">
+                                <h3>Our Impact</h3>
+                                <ul>
+                                    <li>Quantify your achievements...</li>
+                                    <li>Highlight success stories...</li>
+                                    <li>We have helped people gain testimonials.</li>
+                                </ul>
+                            </div>
+                            <div class="about-section-back">
+                                <div class="additional-info">
+                                    <h4>Impact Numbers</h4>
+                                    <ul>
+                                        <li>50,000+ Lives Impacted</li>
+                                        <li>100+ Projects Completed</li>
+                                        <li>25+ Communities Served</li>
+                                        <li>1000+ Volunteers Engaged</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="about-section">
+                        <h3>Join Us</h3>
+                        <p>We invite you to become part of our movement and join us in building a brighter future. You can make a difference by:</p>
+                        <ul>
+                            <li>Donating: Every contribution, no matter the size, helps us advance our mission.</li>
+                            <li>Volunteering: Share your skills and talents to help us directly impact the lives of those we serve.</li>
+                            <li>Advocating: Spread awareness, advocate for change, and help us reach a wider audience.</li>
+                        </ul>
+                    </div>
+
+                    <div class="about-section">
+                        <h3>Connect With Us</h3>
+                        <p>www.smartNGO.com</p>
+                    </div>
+
+                    <h2 class="slogan">[SmartNgo] - [together we can save lives]</h2>
+                </div>
+
+                <div class="cards">
+                    <div class="card">
+                        <div class="card-inner">
+                            <div class="card-front">
+                                <div class="title">Give Donation</div>
+                                <p>Donate now to help the poor people of Africa.</p>
+                                <button onclick="donate()">Donate Now</button>
+                            </div>
+                            <div class="card-back">
+                                <h3>Why Donate?</h3>
+                                <p>Your donation helps provide:</p>
+                                <ul>
+                                    <li>Clean Water Access</li>
+                                    <li>Educational Resources</li>
+                                    <li>Community Support</li>
+                                </ul>
+                                <button onclick="donate()">Support Now</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-inner">
+                            <div class="card-front">
+                                <div class="title">Become a Volunteer</div>
+                                <p>Volunteer to help out in our Educational work.</p>
+                                <button onclick="volunteer()">Volunteer Now</button>
+                            </div>
+                            <div class="card-back">
+                                <h3>Why Volunteer?</h3>
+                                <p>Join our team and:</p>
+                                <ul>
+                                    <li>Make a Real Impact</li>
+                                    <li>Gain Experience</li>
+                                    <li>Build Communities</li>
+                                    <li>Change Lives</li>
+                                </ul>
+                                <button onclick="volunteer()">Join Now</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-inner">
+                            <div class="card-front">
+                                <div class="title">Give Scholarship</div>
+                                <p>Offer scholarship for the future of Africa.</p>
+                                <button onclick="giveScholarship()">Give Immediately</button>
+                            </div>
+                            <div class="card-back">
+                                <h3>Why Give Scholarship?</h3>
+                                <p>Your scholarship provides:</p>
+                                <ul>
+                                    <li>Quality Education</li>
+                                    <li>Better Future</li>
+                                    <li>Career Opportunities</li>
+                                    <li>Community Development</li>
+                                </ul>
+                                <button onclick="giveScholarship()">Support Education</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <img src="images/smart logo.JPG" alt="" style="height: 40px; margin-bottom: 20px;">
+                    <p>Empowering communities through education and clean water initiatives. Join us in making a difference in Africa.</p>
+                    <div class="social-links">
+                        <a href="#" class="facebook" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="whatsapp" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#" class="linkedin" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="twitter" title="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="instagram" title="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="youtube" title="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <div class="title">USEFUL LINKS</div>
+                    <div class="footer-links">
+                        <a href="home.html">Home</a>
+                        <a href="about.html">About Us</a>
+                        <a href="programs.html">Programs</a>
+                        <a href="educate.html">Education</a>
+                        <a href="galery.html">Gallery</a>
+                        <a href="donate.html">Donate</a>
+                        <a href="volunteer.html">Volunteer</a>
+                        <a href="contact.html">Contact</a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <div class="title">CONNECT WITH US</div>
+                    <div class="contact-info">
+                        <p><i class="fas fa-map-marker-alt"></i> South West, North West, Litoral, West<br>Cameroon</p>
+                        <p><i class="fas fa-envelope"></i> info.smartngo.com</p>
+                        <p><i class="fas fa-phone"></i> (237) 674109798</p>
+                        <p><i class="fas fa-clock"></i> Mon - Fri: 9:00 AM - 5:00 PM</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2024 SmartNGO. All rights reserved. | Together we can save lives</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Internal JavaScript
+        document.addEventListener('DOMContentLoaded', function() {
+            // Smooth scroll for navigation
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+
+            // Add hover effect to cards
+            const cards = document.querySelectorAll('.card');
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-10px)';
+                });
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+
+            // Scroll to Top functionality
+            const scrollBtn = document.querySelector('.scroll-top');
+            
+            window.addEventListener('scroll', () => {
+                if(window.pageYOffset > 300) {
+                    scrollBtn.classList.add('visible');
+                } else {
+                    scrollBtn.classList.remove('visible');
+                }
+            });
+
+            scrollBtn.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+
+            // Add highlight effect to important text
+            const highlights = document.querySelectorAll('.highlight');
+            highlights.forEach(highlight => {
+                highlight.addEventListener('mouseover', function() {
+                    this.style.color = '#ffffff';
+                });
+                highlight.addEventListener('mouseout', function() {
+                    this.style.color = 'var(--themeRed)';
+                });
+            });
+
+            // Smooth scroll for all internal links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+
+            // Add intersection observer for fade-in effect
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('fade-in');
+                    }
+                });
+            });
+
+            document.querySelectorAll('.about-section').forEach((section) => {
+                observer.observe(section);
+            });
+        });
+
+        // Button click functions
+        function donate() {
+            alert('Thank you for your interest in donating! Redirecting to donation page...');
+        }
+
+        function volunteer() {
+            alert('Thank you for your interest in volunteering! Redirecting to volunteer registration...');
+        }
+
+        function giveScholarship() {
+            alert('Thank you for your interest in providing a scholarship! Redirecting to scholarship form...');
+        }
+
+        // Newsletter subscription
+        document.getElementById('newsletterInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                const email = this.value;
+                if (validateEmail(email)) {
+                    alert('Thank you for subscribing to our newsletter!');
+                    this.value = '';
+                } else {
+                    alert('Please enter a valid email address');
+                }
+            }
+        });
+
+        function validateEmail(email) {
+            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        }
+
+        // Add this to your existing script tag
+        function toggleMenu() {
+            const menu = document.getElementById('nav-menu');
+            menu.classList.toggle('active');
+        }
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const menu = document.getElementById('nav-menu');
+            const menuToggle = document.querySelector('.menu-toggle');
+            if (!menu.contains(event.target) && !menuToggle.contains(event.target)) {
+                menu.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>
