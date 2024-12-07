@@ -1,0 +1,1342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Volunteer - Smart NGO</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --themeRed: #e43a47;
+            --grey: #efefef;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url("images/banner.jpg");
+            background-size: cover;
+            background-attachment: fixed;
+            color: #ffffff;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: rgba(0,0,0,0.6);
+            position: fixed;
+            width: 100%;
+            z-index: 2;
+        }
+
+        .container {
+            width: 1140px;
+            margin: auto;
+            padding: 0 15px;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            padding: 15px 0;
+            height: 75px;
+        }
+
+        .logo img {
+            height: 100%;
+        }
+
+        /* Navigation for larger screens */
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 10px;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li a {
+            color: #ffffff;
+            text-decoration: none;
+            padding: 10px 20px;
+            text-transform: uppercase;
+            font-size: 16px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+
+        nav ul li a:hover,
+        nav ul li a.active {
+            background-color: var(--themeRed);
+            color: #ffffff;
+            border-radius: 3px;
+        }
+
+        /* Dropdown for mobile */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        /* Responsive styles */
+        @media screen and (max-width: 768px) {
+            .container {
+                width: 100%;
+                padding: 0 15px;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 75px;
+                left: 0;
+                width: 100%;
+                background: rgba(0,0,0,0.9);
+                flex-direction: column;
+                padding: 20px 0;
+                text-align: center;
+            }
+
+            nav ul.active {
+                display: flex;
+            }
+
+            nav ul li {
+                margin: 10px 0;
+            }
+
+            nav ul li a {
+                padding: 10px 20px;
+                display: block;
+            }
+
+            .logo {
+                height: 60px;
+            }
+        }
+
+        /* Banner Section */
+        .banner {
+            padding: 150px 0 80px;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .banner h1 {
+            font-size: 3.5rem;
+            color: var(--themeRed);
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .banner p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Section Title */
+        .sectionTitle {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--themeRed);
+            margin-bottom: 50px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+            padding-bottom: 20px;
+        }
+
+        .sectionTitle:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: var(--themeRed);
+        }
+
+        /* Opportunities Section */
+        .opportunities {
+            padding: 80px 0;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .opportunities-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .opportunity-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .opportunity-card:hover {
+            transform: translateY(-10px);
+            background: rgba(228, 58, 71, 0.1);
+        }
+
+        .opportunity-card i {
+            font-size: 3rem;
+            color: var(--themeRed);
+            margin-bottom: 20px;
+        }
+
+        .opportunity-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        .opportunity-card p {
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+
+        .opportunity-card button {
+            background: var(--themeRed);
+            color: #fff;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .opportunity-card button:hover {
+            background: #fff;
+            color: var(--themeRed);
+        }
+
+        /* Responsive styles for these sections */
+        @media screen and (max-width: 992px) {
+            .opportunities-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .banner h1 {
+                font-size: 2.5rem;
+            }
+
+            .banner p {
+                font-size: 1rem;
+                padding: 0 20px;
+            }
+
+            .sectionTitle {
+                font-size: 2rem;
+            }
+
+            .opportunities-grid {
+                grid-template-columns: 1fr;
+                padding: 0 20px;
+            }
+        }
+
+        /* Impact Section */
+        .impact {
+            padding: 100px 0;
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-10px);
+            background: rgba(228, 58, 71, 0.1);
+        }
+
+        .stat-card i {
+            font-size: 2.5rem;
+            color: var(--themeRed);
+            margin-bottom: 20px;
+        }
+
+        .stat-card .counter {
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--themeRed);
+            margin: 15px 0;
+        }
+
+        .stat-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        .stat-card p {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* Requirements Section */
+        .requirements {
+            padding: 100px 0;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .requirements-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .requirement-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .requirement-card:hover {
+            transform: translateY(-10px);
+            background: rgba(228, 58, 71, 0.1);
+        }
+
+        .requirement-card i {
+            font-size: 2.5rem;
+            color: var(--themeRed);
+            margin-bottom: 20px;
+        }
+
+        .requirement-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        .requirement-card p {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* Add to your existing responsive styles */
+        @media screen and (max-width: 992px) {
+            .stats-grid,
+            .requirements-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media screen and (max-width: 576px) {
+            .stats-grid,
+            .requirements-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stat-card,
+            .requirement-card {
+                padding: 20px;
+            }
+        }
+
+        /* Testimonials Section */
+        .testimonials {
+            padding: 100px 0;
+            background: rgba(0, 0, 0, 0.4);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .testimonial-image {
+            position: relative;
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .testimonial-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.3s ease;
+        }
+
+        .image-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.8));
+        }
+
+        .testimonial-content {
+            padding: 30px;
+            position: relative;
+        }
+
+        .quote-icon {
+            position: absolute;
+            top: -25px;
+            left: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--themeRed);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .quote-icon i {
+            color: #fff;
+            font-size: 20px;
+        }
+
+        .testimonial-card p {
+            font-style: italic;
+            margin: 20px 0;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .volunteer-info {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 15px;
+            margin-top: 15px;
+        }
+
+        .volunteer-info h4 {
+            color: var(--themeRed);
+            margin-bottom: 5px;
+            font-size: 1.1rem;
+        }
+
+        .volunteer-info span {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .testimonial-card:hover .testimonial-image img {
+            transform: scale(1.1);
+        }
+
+        /* Call to Action Section */
+        .cta {
+            padding: 100px 0;
+            text-align: center;
+            background: linear-gradient(rgba(228, 58, 71, 0.1), rgba(0, 0, 0, 0.8));
+        }
+
+        .cta h2 {
+            font-size: 2.5rem;
+            color: var(--themeRed);
+            margin-bottom: 20px;
+        }
+
+        .cta p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 30px;
+            line-height: 1.6;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .primary-btn, .secondary-btn {
+            padding: 15px 30px;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid var(--themeRed);
+        }
+
+        .primary-btn {
+            background: var(--themeRed);
+            color: #fff;
+        }
+
+        .secondary-btn {
+            background: transparent;
+            color: var(--themeRed);
+        }
+
+        .primary-btn:hover {
+            background: #fff;
+            color: var(--themeRed);
+        }
+
+        .secondary-btn:hover {
+            background: var(--themeRed);
+            color: #fff;
+        }
+
+        /* Add to your existing responsive styles */
+        @media screen and (max-width: 992px) {
+            .testimonials-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+                padding: 0 20px;
+            }
+
+            .cta h2 {
+                font-size: 2rem;
+            }
+
+            .cta p {
+                font-size: 1rem;
+                padding: 0 20px;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                padding: 0 20px;
+            }
+
+            .primary-btn, .secondary-btn {
+                width: 100%;
+            }
+        }
+
+        /* Add to your style section */
+        .loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+        .loader-content {
+            text-align: center;
+            color: var(--themeRed);
+        }
+
+        .loader-spinner {
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid var(--themeRed);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .parallax {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            transition: background-position 0.5s;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-100px);
+            transition: all 0.8s ease;
+        }
+
+        .reveal-right {
+            opacity: 0;
+            transform: translateX(100px);
+            transition: all 0.8s ease;
+        }
+
+        .reveal-left.active,
+        .reveal-right.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Footer Styles */
+        footer {
+            background: linear-gradient(rgba(0,0,0,0.95), rgba(0,0,0,0.95));
+            padding: 70px 0 0 0;
+            position: relative;
+            border-top: 3px solid var(--themeRed);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1.5fr;
+            gap: 40px;
+        }
+
+        .footer-section {
+            color: #ffffff;
+        }
+
+        .footer-section .title {
+            color: var(--themeRed);
+            font-size: 1.4rem;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-section .title:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--themeRed);
+        }
+
+        .footer-links {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .footer-links a {
+            color: #ffffff;
+            text-decoration: none;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+        }
+
+        .footer-links a:before {
+            content: '→';
+            margin-right: 10px;
+            color: var(--themeRed);
+        }
+
+        .footer-links a:hover {
+            color: var(--themeRed);
+            transform: translateX(5px);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            color: #ffffff;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 18px;
+        }
+
+        .social-links a:hover {
+            transform: translateY(-5px);
+        }
+
+        .social-links a.facebook:hover { background: #3b5998; }
+        .social-links a.whatsapp:hover { background: #25d366; }
+        .social-links a.linkedin:hover { background: #0077b5; }
+        .social-links a.twitter:hover { background: #1da1f2; }
+        .social-links a.instagram:hover { background: #e4405f; }
+        .social-links a.youtube:hover { background: #ff0000; }
+
+        .contact-info p {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .contact-info p i {
+            margin-right: 10px;
+            color: var(--themeRed);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 60px;
+            background: rgba(0, 0, 0, 0.8);
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* Responsive footer */
+        @media screen and (max-width: 992px) {
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 30px;
+            }
+
+            .footer-section .title:after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+
+            .footer-links {
+                justify-content: center;
+            }
+
+            .social-links {
+                justify-content: center;
+            }
+
+            .contact-info p {
+                justify-content: center;
+            }
+        }
+        .social-heading {
+            color: var(--themeRed);
+            font-size: 1.4rem;
+            margin: 30px 0 15px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            padding-left: 15px;
+            border-left: 3px solid var(--themeRed);
+        }
+
+        .social-text {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        /* Update responsive styles */
+        @media screen and (max-width: 768px) {
+            .social-heading {
+                text-align: center;
+                padding-left: 0;
+                border-left: none;
+                border-bottom: 3px solid var(--themeRed);
+                padding-bottom: 10px;
+            }
+        }
+        .why-volunteer {
+            padding: 100px 0;
+            background: rgba(0, 0, 0, 0.4);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 40px 30px;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255, 255, 255, 0.1),
+                transparent
+            );
+            transition: 0.5s;
+        }
+
+        .feature-card:hover::before {
+            left: 100%;
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: rgba(228, 58, 71, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            transition: all 0.3s ease;
+        }
+
+        .feature-icon i {
+            font-size: 35px;
+            color: var(--themeRed);
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover .feature-icon {
+            background: var(--themeRed);
+            transform: rotateY(360deg);
+        }
+
+        .feature-card:hover .feature-icon i {
+            color: #fff;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        .feature-card p {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+        }
+
+        /* Responsive styles */
+        @media screen and (max-width: 992px) {
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media screen and (max-width: 576px) {
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--themeRed);
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            transition: all 0.3s ease;
+            z-index: 999;
+        }
+
+        .back-to-top:hover {
+            background: #fff;
+            color: var(--themeRed);
+            box-shadow: 0 0 20px rgba(228, 58, 71, 0.4);
+        }
+
+        .back-to-top.visible {
+            display: flex;
+            animation: bounce 1s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="images/smart logo.JPG" alt="Smart NGO">
+            </div>
+            <button class="menu-toggle" onclick="toggleMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav>
+                <ul id="nav-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="programs.html">Programs</a></li>
+                    <li><a href="educate.html">Education</a></li>
+                    <li><a href="galery.html">Gallery</a></li>
+                    <li><a href="volunteer.html" class="active">Volunteer</a></li>
+                    <li><a href="join.html">Join Us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="banner parallax">
+        <div class="container">
+            <h1>Volunteer With Us</h1>
+            <p>Join our mission to create lasting change in African communities through education and clean water initiatives.</p>
+        </div>
+    </section>
+    <section class="why-volunteer reveal">
+        <div class="container">
+            <h2 class="sectionTitle">Why Volunteer With Us?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-globe-africa"></i>
+                    </div>
+                    <h3>Cultural Experience</h3>
+                    <p>Immerse yourself in African culture while making a meaningful impact in local communities.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <h3>Professional Growth</h3>
+                    <p>Gain valuable experience and develop new skills that will enhance your career prospects.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3>Network Building</h3>
+                    <p>Connect with like-minded individuals and organizations from around the world.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="opportunities reveal">
+        <div class="container">
+            <h2 class="sectionTitle">Volunteer Opportunities</h2>
+            <div class="opportunities-grid">
+                <div class="opportunity-card">
+                    <i class="fas fa-hand-holding-water"></i>
+                    <h3>Water Projects</h3>
+                    <p>Help us provide clean water access to communities in need. Your skills can make a real difference.</p>
+                    <button onclick="location.href='join.html'">Get Involved</button>
+                </div>
+
+                <div class="opportunity-card">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                    <h3>Education Support</h3>
+                    <p>Share your knowledge and help shape the future through our educational programs.</p>
+                    <button onclick="location.href='join.html'">Start Teaching</button>
+                </div>
+
+                <div class="opportunity-card">
+                    <i class="fas fa-users"></i>
+                    <h3>Community Outreach</h3>
+                    <p>Work directly with communities to implement sustainable development projects.</p>
+                    <button onclick="location.href='join.html'">Join Now</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+         
+        function toggleMenu() {
+            const menu = document.getElementById('nav-menu');
+            menu.classList.toggle('active');
+        }
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const menu = document.getElementById('nav-menu');
+            const menuToggle = document.querySelector('.menu-toggle');
+            if (!menu.contains(event.target) && !menuToggle.contains(event.target)) {
+                menu.classList.remove('active');
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const counters = document.querySelectorAll('.counter');
+            
+            const startCounting = (counter) => {
+                const target = parseInt(counter.getAttribute('data-target'));
+                const count = +counter.innerText;
+                const increment = target / 200;
+
+                if (count < target) {
+                    counter.innerText = Math.ceil(count + increment);
+                    setTimeout(() => startCounting(counter), 1);
+                } else {
+                    counter.innerText = target;
+                }
+            };
+
+            // Intersection Observer for counters
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        startCounting(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            counters.forEach(counter => observer.observe(counter));
+        });
+
+        // Loading animation
+        window.addEventListener('load', function() {
+            const loader = document.querySelector('.loader');
+            setTimeout(() => {
+                loader.style.display = 'none';
+            }, 1000);
+        });
+
+        // Scroll reveal
+        function reveal() {
+            const reveals = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+            
+            reveals.forEach(element => {
+                const windowHeight = window.innerHeight;
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < windowHeight - elementVisible) {
+                    element.classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', reveal);
+
+        // Parallax effect
+        window.addEventListener('scroll', function() {
+            const parallax = document.querySelectorAll('.parallax');
+            let scrollPosition = window.pageYOffset;
+            
+            parallax.forEach(element => {
+                element.style.backgroundPositionY = scrollPosition * 0.5 + 'px';
+            });
+        });
+
+        // Dynamic counter animation
+        const animateCounter = (element, target) => {
+            let count = 0;
+            const speed = 2000 / target; // Adjust speed based on target number
+            
+            const updateCount = () => {
+                if (count < target) {
+                    count++;
+                    element.textContent = count;
+                    requestAnimationFrame(updateCount);
+                }
+            };
+            
+            updateCount();
+        };
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            });
+        });
+
+        // Add hover effect for cards
+        document.querySelectorAll('.opportunity-card, .stat-card, .requirement-card, .testimonial-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.05) translateY(-10px)';
+                this.style.boxShadow = '0 10px 20px rgba(0,0,0,0.2)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'scale(1) translateY(0)';
+                this.style.boxShadow = 'none';
+            });
+        });
+
+        const backToTopButton = document.getElementById('backToTop');
+
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 300) {
+                backToTopButton.classList.add('visible');
+            } else {
+                backToTopButton.classList.remove('visible');
+            }
+        });
+
+        backToTopButton.addEventListener('click', function(e) {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
+
+    <section class="impact reveal">
+        <div class="container">
+            <h2 class="sectionTitle">Our Impact</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <i class="fas fa-tint"></i>
+                    <div class="counter" data-target="50">0</div>
+                    <h3>Water Projects</h3>
+                    <p>Completed across Africa</p>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-users"></i>
+                    <div class="counter" data-target="1000">0</div>
+                    <h3>Lives Impacted</h3>
+                    <p>Through our initiatives</p>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-school"></i>
+                    <div class="counter" data-target="25">0</div>
+                    <h3>Schools Supported</h3>
+                    <p>With educational resources</p>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-hands-helping"></i>
+                    <div class="counter" data-target="100">0</div>
+                    <h3>Active Volunteers</h3>
+                    <p>Making a difference</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="requirements reveal">
+        <div class="container">
+            <h2 class="sectionTitle">Volunteer Requirements</h2>
+            <div class="requirements-grid">
+                <div class="requirement-card">
+                    <i class="fas fa-user-check"></i>
+                    <h3>Age Requirement</h3>
+                    <p>Must be 18 years or older</p>
+                </div>
+                <div class="requirement-card">
+                    <i class="fas fa-clock"></i>
+                    <h3>Time Commitment</h3>
+                    <p>Minimum 3 months commitment</p>
+                </div>
+                <div class="requirement-card">
+                    <i class="fas fa-language"></i>
+                    <h3>Language Skills</h3>
+                    <p>English proficiency required</p>
+                </div>
+                <div class="requirement-card">
+                    <i class="fas fa-heart"></i>
+                    <h3>Passion</h3>
+                    <p>Strong desire to help others</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials reveal">
+        <div class="container">
+            <h2 class="sectionTitle">Volunteer Stories</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-image">
+                        <img src="images/volunteer1.jpg" alt="Volunteer">
+                        <div class="image-overlay"></div>
+                    </div>
+                    <div class="testimonial-content">
+                        <div class="quote-icon">
+                            <i class="fas fa-quote-left"></i>
+                        </div>
+                        <p>"Working with Smart NGO has been an incredible experience. The impact we make in communities is real and lasting."</p>
+                        <div class="volunteer-info">
+                            <h4>Sarah Johnson</h4>
+                            <span>Water Project Volunteer</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-image">
+                        <img src="images/volunteer2.jpg" alt="Volunteer">
+                        <div class="image-overlay"></div>
+                    </div>
+                    <div class="testimonial-content">
+                        <div class="quote-icon">
+                            <i class="fas fa-quote-left"></i>
+                        </div>
+                        <p>"Teaching children and seeing their eyes light up when they understand something new is priceless."</p>
+                        <div class="volunteer-info">
+                            <h4>Michael Smith</h4>
+                            <span>Education Volunteer</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-image">
+                        <img src="images/volunteer3.jpg" alt="Volunteer">
+                        <div class="image-overlay"></div>
+                    </div>
+                    <div class="testimonial-content">
+                        <div class="quote-icon">
+                            <i class="fas fa-quote-left"></i>
+                        </div>
+                        <p>"The community spirit and the difference we make in people's lives is truly incredible."</p>
+                        <div class="volunteer-info">
+                            <h4>Emma Davis</h4>
+                            <span>Community Outreach</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta reveal">
+        <div class="container">
+            <h2>Ready to Make a Difference?</h2>
+            <p>Join our team of dedicated volunteers and help create lasting change in African communities.</p>
+            <div class="cta-buttons">
+                <button onclick="location.href='join.html'" class="primary-btn">Apply Now</button>
+                <button onclick="location.href='contact.html'" class="secondary-btn">Contact Us</button>
+            </div>
+        </div>
+    </section>
+
+    <div class="loader">
+        <div class="loader-content">
+            <div class="loader-spinner"></div>
+            <h2>Loading...</h2>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <img src="images/smart logo.JPG" alt="Smart NGO" style="height: 40px; margin-bottom: 20px;">
+                    <p class="footer-description">
+                        <span style="color: var(--themeRed); font-weight: 600;">Empowering</span> African communities through clean water access and quality education. Together we can create lasting change and build a brighter future.
+                    </p>
+                    <h3 class="social-heading">Join Our Community</h3>
+                    <p class="social-text">Follow us on social media to stay updated with our latest projects and make a difference together.</p>
+                    <div class="social-links">
+                        <a href="#" class="facebook" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="whatsapp" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#" class="linkedin" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="twitter" title="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="instagram" title="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="youtube" title="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <div class="title">USEFUL LINKS</div>
+                    <div class="footer-links">
+                        <a href="index.html">Home</a>
+                        <a href="about.html">About Us</a>
+                        <a href="programs.html">Programs</a>
+                        <a href="educate.html">Education</a>
+                        <a href="galery.html">Gallery</a>
+                        <a href="donate.html">Donate</a>
+                        <a href="volunteer.html">Volunteer</a>
+                        <a href="contact.html">Contact</a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <div class="title">CONNECT WITH US</div>
+                    <div class="contact-info">
+                        <p><i class="fas fa-map-marker-alt"></i> South West, North West, Litoral, West<br>Cameroon</p>
+                        <p><i class="fas fa-envelope"></i> info.smartngo.com</p>
+                        <p><i class="fas fa-phone"></i> (237) 674109798</p>
+                        <p><i class="fas fa-clock"></i> Mon - Fri: 9:00 AM - 5:00 PM</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button id="backToTop" class="back-to-top">
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        <div class="footer-bottom">
+            <p>&copy; 2024 SmartNGO. All rights reserved. | Together we can save lives</p>
+        </div>
+    </footer>
+</body>
+</html> 
