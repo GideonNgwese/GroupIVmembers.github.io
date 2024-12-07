@@ -3,148 +3,1230 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Smart NGO</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Gallery - Smart NGO</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --themeRed: #e43a47;
+            --grey: #efefef;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url("images/banner.jpg");
+            background-size: cover;
+            background-attachment: fixed;
+            color: #ffffff;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: rgba(0,0,0,0.6);
+            position: fixed;
+            width: 100%;
+            z-index: 2;
+        }
+
+        .container {
+            width: 1140px;
+            margin: auto;
+            padding: 0 15px;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            padding: 15px 0;
+            height: 75px;
+        }
+
+        .logo img {
+            height: 100%;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 10px;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li a {
+            color: #ffffff;
+            text-decoration: none;
+            padding: 10px 20px;
+            text-transform: uppercase;
+            font-size: 16px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+
+        nav ul li a:hover,
+        nav ul li a.active {
+            background-color: var(--themeRed);
+            color: #ffffff;
+            border-radius: 3px;
+        }
+
+        /* Gallery Styles */
+        .gallery-section {
+            padding: 120px 0 50px;
+        }
+
+        .sectionTitle {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--themeRed);
+            margin-bottom: 50px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+            padding-bottom: 20px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            cursor: pointer;
+            height: 300px;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        .gallery-title {
+            color: #fff;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            text-align: center;
+            padding: 0 10px;
+        }
+
+        .gallery-category {
+            color: var(--themeRed);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Image Popup */
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .popup-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90vh;
+        }
+
+        .popup-content img {
+            max-width: 100%;
+            max-height: 90vh;
+            object-fit: contain;
+        }
+
+        .close-popup {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            color: #fff;
+            font-size: 30px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 10px;
+        }
+
+        /* Filter Buttons */
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            padding: 0 20px;
+        }
+
+        .filter-btn {
+            padding: 8px 20px;
+            border: none;
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--themeRed);
+        }
+
+        /* Responsive Styles */
+        @media screen and (max-width: 1140px) {
+            .container {
+                width: 100%;
+                padding: 0 20px;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
+
+            .gallery-item {
+                height: 250px;
+            }
+
+            .filter-buttons {
+                gap: 10px;
+            }
+
+            .filter-btn {
+                padding: 6px 15px;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-item {
+                height: 300px;
+            }
+
+            .sectionTitle {
+                font-size: 2rem;
+            }
+        }
+
+        /* Footer Styles */
+        footer {
+            background: linear-gradient(rgba(0,0,0,0.95), rgba(0,0,0,0.95));
+            padding: 70px 0 0 0;
+            position: relative;
+            border-top: 3px solid var(--themeRed);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1.5fr;
+            gap: 40px;
+        }
+
+        .footer-section {
+            color: #ffffff;
+        }
+
+        .footer-section .title {
+            color: var(--themeRed);
+            font-size: 1.4rem;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-section .title:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--themeRed);
+        }
+
+        .footer-links {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .footer-links a {
+            color: #ffffff;
+            text-decoration: none;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+        }
+
+        .footer-links a:before {
+            content: '→';
+            margin-right: 10px;
+            color: var(--themeRed);
+        }
+
+        .footer-links a:hover {
+            color: var(--themeRed);
+            transform: translateX(5px);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            color: #ffffff;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 18px;
+        }
+
+        .social-links a:hover {
+            transform: translateY(-5px);
+        }
+
+        .social-links a.facebook:hover { background: #3b5998; }
+        .social-links a.whatsapp:hover { background: #25d366; }
+        .social-links a.linkedin:hover { background: #0077b5; }
+        .social-links a.twitter:hover { background: #1da1f2; }
+        .social-links a.instagram:hover { background: #e4405f; }
+        .social-links a.youtube:hover { background: #ff0000; }
+
+        .contact-info p {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .contact-info p i {
+            margin-right: 10px;
+            color: var(--themeRed);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 60px;
+            background: rgba(0, 0, 0, 0.8);
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .social-heading {
+            color: var(--themeRed);
+            font-size: 1.2rem;
+            margin: 30px 0 15px;
+            font-weight: 600;
+        }
+
+        .social-text {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+        }
+
+        /* Responsive footer */
+        @media screen and (max-width: 992px) {
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 30px;
+            }
+
+            .footer-section .title:after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+
+            .footer-links {
+                justify-content: center;
+            }
+
+            .social-links {
+                justify-content: center;
+            }
+
+            .contact-info p {
+                justify-content: center;
+            }
+        }
+
+        /* Add these mobile menu styles in your <style> section */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 10px;
+        }
+
+        @media screen and (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            nav {
+                width: 100%;
+            }
+
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(0, 0, 0, 0.95);
+                flex-direction: column;
+                padding: 10px 0;
+                text-align: center;
+                z-index: 1000;
+            }
+
+            nav ul.active {
+                display: flex !important;
+            }
+
+            nav ul li {
+                margin: 8px 0;
+                width: 100%;
+            }
+
+            nav ul li a {
+                display: block;
+                padding: 12px 20px;
+                font-size: 14px;
+                width: 100%;
+                box-sizing: border-box;
+            }
+
+            nav ul li a:hover,
+            nav ul li a.active {
+                background-color: var(--themeRed);
+                padding-left: 30px;
+            }
+
+            header .container {
+                padding: 10px 20px;
+                position: relative;
+            }
+
+            .logo {
+                height: 50px;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            nav ul li a {
+                font-size: 13px;
+                padding: 10px 15px;
+            }
+
+            .logo {
+                height: 45px;
+            }
+
+            .menu-toggle {
+                font-size: 20px;
+            }
+        }
+
+        /* Loading Animation */
+        .loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+        .loader-content {
+            text-align: center;
+            color: var(--themeRed);
+        }
+
+        .loader-spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid var(--themeRed);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Floating Action Buttons */
+        .floating-actions {
+            position: fixed;
+            right: 30px;
+            bottom: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            z-index: 1000;
+        }
+
+        .float-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--themeRed);
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            transition: all 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .float-btn.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .float-btn:hover {
+            transform: scale(1.1);
+            background: #fff;
+            color: var(--themeRed);
+            box-shadow: 0 5px 15px rgba(228, 58, 71, 0.3);
+        }
+
+        /* Gallery Animations */
+        .gallery-item {
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Share Menu */
+        .share-menu {
+            position: absolute;
+            bottom: 70px;
+            right: 0;
+            background: #fff;
+            border-radius: 10px;
+            padding: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            display: none;
+        }
+
+        .share-menu.active {
+            display: block;
+            animation: slideIn 0.3s ease-out;
+        }
+
+        .share-menu a {
+            display: block;
+            padding: 10px 20px;
+            color: #333;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .share-menu a:hover {
+            background: rgba(228, 58, 71, 0.1);
+            color: var(--themeRed);
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Gallery Info Section */
+        .gallery-info {
+            padding: 80px 0;
+            background: rgba(0, 0, 0, 0.5);
+            margin-top: 50px;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .info-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .info-card:hover {
+            transform: translateY(-10px);
+            background: rgba(228, 58, 71, 0.1);
+        }
+
+        .info-icon {
+            width: 80px;
+            height: 80px;
+            background: rgba(228, 58, 71, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            transition: all 0.3s ease;
+        }
+
+        .info-icon i {
+            font-size: 35px;
+            color: var(--themeRed);
+            transition: all 0.3s ease;
+        }
+
+        .info-card:hover .info-icon {
+            background: var(--themeRed);
+        }
+
+        .info-card:hover .info-icon i {
+            color: #fff;
+            transform: rotateY(360deg);
+        }
+
+        .info-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        .info-card p {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .stat {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .counter {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--themeRed);
+        }
+
+        .label {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Gallery CTA Section */
+        .gallery-cta {
+            text-align: center;
+            padding: 50px;
+            background: rgba(228, 58, 71, 0.1);
+            border-radius: 15px;
+            margin-top: 50px;
+        }
+
+        .gallery-cta h2 {
+            font-size: 2.5rem;
+            color: var(--themeRed);
+            margin-bottom: 20px;
+        }
+
+        .gallery-cta p {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .primary-btn, .secondary-btn {
+            padding: 12px 30px;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .primary-btn {
+            background: var(--themeRed);
+            color: #fff;
+            border: 2px solid var(--themeRed);
+        }
+
+        .secondary-btn {
+            background: transparent;
+            color: #fff;
+            border: 2px solid #fff;
+        }
+
+        .primary-btn:hover, .secondary-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        /* Responsive styles */
+        @media screen and (max-width: 992px) {
+            .info-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-cta {
+                padding: 30px 20px;
+            }
+
+            .gallery-cta h2 {
+                font-size: 2rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .primary-btn, .secondary-btn {
+                width: 100%;
+            }
+        }
+    </style>
 </head>
 <body>
+    <div class="loader">
+        <div class="loader-content">
+            <div class="loader-spinner"></div>
+            <h2>Loading Gallery...</h2>
+        </div>
+    </div>
 
-    <div class="fullcontainer banner" id="homesection">
-        <header>
-            <div class="container">
-                <div class="logo">
-                    <img src="smart logo.JPG" alt="NGO logo">
-                </div>
-                
-                <nav>
-                    <ul>
-                        <li>
-                            <a href="home.html">home</a>
-                        </li>
-                        <li>
-                            <a href="about.html">about us</a>
-                        </li>
-                        <li>
-                            <a href="programs.html">programs</a>
-                        </li>
-                        <li>
-                            <a href="educate.html">education</a>
-                        </li>
-                        <li>
-                            <a href="galery.html">gallery</a>
-                        </li>
-                        <li>
-                            <a href="join.html">join us</a>
-                        </li>
-                    </ul>
-                </nav>
-            
-            </div>
-        </header>
-    <section class="gallery" id="gallerysection">
+    <header>
         <div class="container">
-            <div class="sectionTitle">Gallery</div>
+            <div class="logo">
+                <img src="images/smart logo.JPG" alt="Smart NGO">
+            </div>
+            <button class="menu-toggle" onclick="toggleMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="programs.html">Programs</a></li>
+                    <li><a href="educate.html">Education</a></li>
+                    <li><a href="galery.html" class="active">Gallery</a></li>
+                    <li><a href="join.html">Join Us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
-            <div class="gallerycontainer">
-                <div class="item">
-                    <span class="title">classroom lectures</span>
-                    <img src="10.jpg" alt="" />
-                </div>
-                <!--item end-->
-                
-                <div class="item">
-                    <span class="title">participation</span>
-                    <img src="2.jpg" alt="" />
-                </div>
-                <!--item end-->
-
-                <div class="item">
-                    <span class="title">memorising</span>
-                    <img src="3.jpg" alt="" />
-                </div>
-                <!--item end-->
-
-                <div class="item">
-                    <span class="title">practical session</span>
-                    <img src="4.jpg" alt="" />
-                </div>
-                <!--item end-->
-
-                <div class="item">
-                    <span class="title">children playing</span>
-                    <img src="5.jpg" alt="" />
-                </div>
-                <!--item end-->
-
-                <div class="item">
-                    <span class="title"> leisure time</span>
-                    <img src="6.jpg" alt="" />
-                </div>
-                <!--item end-->
-
-                <div class="item">
-                    <span class="title">children learning</span>
-                    <img src="8.jpg" alt="" />
-                </div>
-                <!--item end-->
-
-                <div class="item">
-                    <span class="title">children Excercise</span>
-                    <img src="9.jpg" alt="" />
-                </div>
-                <!--item end-->
+    <section class="gallery-section">
+        <div class="container">
+            <h2 class="sectionTitle">Our Gallery</h2>
+            
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="education">Education</button>
+                <button class="filter-btn" data-filter="water">Water Projects</button>
+                <button class="filter-btn" data-filter="community">Community</button>
             </div>
 
+            <div class="gallery-grid">
+                <!-- Education Category -->
+                <div class="gallery-item" data-category="education">
+                    <img src="images/programs/claa.jpg" alt="Education">
+                    <div class="gallery-overlay">
+                        <h3 class="gallery-title">Primary Education</h3>
+                        <span class="gallery-category">Education</span>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="education">
+                    <img src="images/programs/boya.jpg" alt="Education">
+                    <div class="gallery-overlay">
+                        <h3 class="gallery-title">Secondary Education</h3>
+                        <span class="gallery-category">Education</span>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="education">
+                    <img src="images/programs/st.jpg" alt="Education">
+                    <div class="gallery-overlay">
+                        <h3 class="gallery-title">Student Learning</h3>
+                        <span class="gallery-category">Education</span>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="education">
+                    <img src="images/programs/claa.jpg" alt="Education">
+                    <div class="gallery-overlay">
+                        <h3 class="gallery-title">Computer Training</h3>
+                        <span class="gallery-category">Education</span>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="education">
+                    <img src="images/programs/boya.jpg" alt="Education">
+                    <div class="gallery-overlay">
+                        <h3 class="gallery-title">Teacher Training</h3>
+                        <span class="gallery-category">Education</span>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="education">
+                    <img src="images/programs/st.jpg" alt="Education">
+                    <div class="gallery-overlay">
+                        <h3 class="gallery-title">School Activities</h3>
+                        <span class="gallery-category">Education</span>
+                    </div>
+                </div>
+
+                <!-- Water Projects Category -->
+                <div class="gallery-item" data-category="water">
+                    <img src="images/programs/wat.jpg" alt="Water Project">
+                    <div class="gallery-overlay">
+                        <h3 class="gallery-title">Clean Water Initiative</h3>
+                        <span class="gallery-category">Water Projects</span>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="water">
+                    <img src="images/programs/wat.jpg" alt="Water Project">
+                    <div class="gallery-overlay">
+                        <h3 class="gallery-title">Well Construction</h3>
+                        <span class="gallery-category">Water Projects</span>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="water">
+                    <img src="images/programs/wat.jpg" alt="Water Project">
+                    <div class="gallery-overlay">
+                        <h3 class="gallery-title">Water Distribution</h3>
+                        <span class="gallery-category">Water Projects</span>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="water">
+                    <img src="images/programs/wat.jpg" alt="Water Project">
+                    <div class="gallery-overlay">
+                        <h3 class="gallery-title">Water Treatment</h3>
+                        <span class="gallery-category">Water Projects</span>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="water">
+                    <img src="images/programs/wat.jpg" alt="Water Project">
+                    <div class="gallery-overlay">
+                        <h3 class="gallery-title">Community Wells</h3>
+                        <span class="gallery-category">Water Projects</span>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="water">
+                    <img src="images/programs/wat.jpg" alt="Water Project">
+                    <div class="gallery-overlay">
+                        <h3 class="gallery-title">Water Access</h3>
+                        <span class="gallery-category">Water Projects</span>
+                    </div>
+                </div>
+
+                <!-- Community Category -->
+                <div class="gallery-item" data-category="community">
+                    <img src="images/programs/st.jpg" alt="Community">
+                    <div class="gallery-overlay">
+                        <h3 class="gallery-title">Community Outreach</h3>
+                        <span class="gallery-category">Community</span>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="community">
+                    <img src="images/programs/boya.jpg" alt="Community">
+                    <div class="gallery-overlay">
+                        <h3 class="gallery-title">Youth Programs</h3>
+                        <span class="gallery-category">Community</span>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="community">
+                    <img src="images/programs/claa.jpg" alt="Community">
+                    <div class="gallery-overlay">
+                        <h3 class="gallery-title">Health Initiatives</h3>
+                        <span class="gallery-category">Community</span>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="community">
+                    <img src="images/programs/st.jpg" alt="Community">
+                    <div class="gallery-overlay">
+                        <h3 class="gallery-title">Skills Training</h3>
+                        <span class="gallery-category">Community</span>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="community">
+                    <img src="images/programs/boya.jpg" alt="Community">
+                    <div class="gallery-overlay">
+                        <h3 class="gallery-title">Women Empowerment</h3>
+                        <span class="gallery-category">Community</span>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="community">
+                    <img src="images/programs/claa.jpg" alt="Community">
+                    <div class="gallery-overlay">
+                        <h3 class="gallery-title">Community Events</h3>
+                        <span class="gallery-category">Community</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
-    <!-- end galerry-->
+
+    <!-- Image Popup -->
+    <div class="popup-overlay">
+        <div class="popup-content">
+            <button class="close-popup">&times;</button>
+            <img src="" alt="Enlarged Image">
+        </div>
+    </div>
+
+    <div class="floating-actions">
+        <button id="backToTop" class="float-btn" title="Back to Top">
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        <button class="float-btn share-btn" title="Share Gallery">
+            <i class="fas fa-share-alt"></i>
+        </button>
+    </div>
+
+    <section class="gallery-info">
+        <div class="container">
+            <div class="info-grid">
+                <div class="info-card">
+                    <div class="info-icon">
+                        <i class="fas fa-camera"></i>
+                    </div>
+                    <h3>Photo Stories</h3>
+                    <p>Each image in our gallery tells a unique story of transformation and hope in African communities.</p>
+                    <div class="stat">
+                        <span class="counter" data-target="500">0</span>
+                        <span class="label">Photos</span>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <div class="info-icon">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <h3>Video Documentation</h3>
+                    <p>Watch our project documentaries and see the real impact of our work in communities.</p>
+                    <div class="stat">
+                        <span class="counter" data-target="50">0</span>
+                        <span class="label">Videos</span>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <div class="info-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Community Stories</h3>
+                    <p>Real stories from the communities we serve, showcasing the power of collective action.</p>
+                    <div class="stat">
+                        <span class="counter" data-target="100">0</span>
+                        <span class="label">Stories</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gallery-cta">
+                <h2>Be Part of Our Story</h2>
+                <p>Join us in documenting and sharing the journey of transformation across African communities.</p>
+                <div class="cta-buttons">
+                    <button onclick="location.href='volunteer.html'" class="primary-btn">Become a Volunteer</button>
+                    <button onclick="location.href='donate.html'" class="secondary-btn">Support Our Work</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Filter functionality
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const galleryItems = document.querySelectorAll('.gallery-item');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                // Add active class to clicked button
+                button.classList.add('active');
+
+                const filter = button.getAttribute('data-filter');
+
+                galleryItems.forEach(item => {
+                    if (filter === 'all' || item.getAttribute('data-category') === filter) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Image popup functionality
+        const popup = document.querySelector('.popup-overlay');
+        const popupImg = popup.querySelector('img');
+        const closePopup = document.querySelector('.close-popup');
+
+        galleryItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const imgSrc = item.querySelector('img').src;
+                popupImg.src = imgSrc;
+                popup.style.display = 'flex';
+            });
+        });
+
+        closePopup.addEventListener('click', () => {
+            popup.style.display = 'none';
+        });
+
+        popup.addEventListener('click', (e) => {
+            if (e.target === popup) {
+                popup.style.display = 'none';
+            }
+        });
+
+        // Add to your existing script
+        function toggleMenu() {
+            const menu = document.querySelector('nav ul');
+            const menuToggle = document.querySelector('.menu-toggle');
+            
+            if (menu.classList.contains('active')) {
+                menu.classList.remove('active');
+                menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+            } else {
+                menu.classList.add('active');
+                menuToggle.innerHTML = '<i class="fas fa-times"></i>';
+            }
+        }
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const menu = document.querySelector('nav ul');
+            const menuToggle = document.querySelector('.menu-toggle');
+            
+            if (!menu.contains(event.target) && !menuToggle.contains(event.target)) {
+                menu.classList.remove('active');
+                menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+            }
+        });
+
+        // Loading Animation
+        window.addEventListener('load', function() {
+            const loader = document.querySelector('.loader');
+            setTimeout(() => {
+                loader.style.opacity = '0';
+                setTimeout(() => {
+                    loader.style.display = 'none';
+                }, 500);
+            }, 1000);
+        });
+
+        // Back to Top Button
+        const backToTop = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Share Button
+        const shareBtn = document.querySelector('.share-btn');
+        shareBtn.classList.add('visible');
+
+        shareBtn.addEventListener('click', () => {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Smart NGO Gallery',
+                    text: 'Check out our gallery of community projects!',
+                    url: window.location.href
+                })
+                .catch(console.error);
+            } else {
+                alert('Share feature not supported on this browser');
+            }
+        });
+
+        // Add animation to gallery items on scroll
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.gallery-item').forEach(item => {
+            item.style.opacity = '0';
+            item.style.transform = 'translateY(20px)';
+            observer.observe(item);
+        });
+    </script>
 
     <footer>
         <div class="container">
-            <div class="newslettercontainer">
-                <img src="smart logo.JPG" alt="" />
-                <p>
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Deleniti eius, ab dignissimos cum, et libero atque hic vero id nisi unde saepe similique quo sint at maxime, perferendis iste facere!
-                </p>
-                <input type="text" placeholder="macjameszemo@gmail.com" />
-            </div>
+            <div class="footer-content">
+                <div class="footer-section">
+                    <img src="images/smart logo.JPG" alt="Smart NGO" style="height: 40px; margin-bottom: 20px;">
+                    <p class="footer-description">
+                        <span style="color: var(--themeRed); font-weight: 600;">Empowering</span> African communities through education and clean water initiatives. Together we can create lasting change and build a brighter future.
+                    </p>
+                    <h3 class="social-heading">Join Our Community</h3>
+                    <p class="social-text">Follow us on social media to stay updated with our latest projects.</p>
+                    <div class="social-links">
+                        <a href="#" class="facebook" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="whatsapp" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#" class="linkedin" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="twitter" title="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="instagram" title="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="youtube" title="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
 
-            <div class="linkscontainer">
-                <div class="title">USEFUL LINKS</div>
+                <div class="footer-section">
+                    <div class="title">USEFUL LINKS</div>
+                    <div class="footer-links">
+                        <a href="index.html">Home</a>
+                        <a href="about.html">About Us</a>
+                        <a href="programs.html">Programs</a>
+                        <a href="educate.html">Education</a>
+                        <a href="galery.html">Gallery</a>
+                        <a href="donate.html">Donate</a>
+                        <a href="volunteer.html">Volunteer</a>
+                        <a href="contact.html">Contact</a>
+                    </div>
+                </div>
 
-                <ul>
-                    <li>
-                        <a href="home.html">home</a>
-                    </li>
-                    <li>
-                        <a href="about.html">about us</a>
-                    </li>
-                    <li>
-                        <a href="galery.html">programs</a>
-                    </li>
-                    <li>
-                        <a href="home.html">education</a>
-                    </li>
-                    <li>
-                        <a href="educate.html">gallery</a>
-                    </li>
-                    <li>
-                        <a href="join.html">join us</a>
-                    </li>
-                </ul>
-
-            </div>
-
-            <div class="connectcontainer">
-                <div class="title">connect with us</div>
-                <p>
-                    South West, North West, Litoral, West <br />
-                    Cameroon
-                </p>
-                <p>infor.smartngo.com</p>
-                <p>(237) 674109798</p>
+                <div class="footer-section">
+                    <div class="title">CONNECT WITH US</div>
+                    <div class="contact-info">
+                        <p><i class="fas fa-map-marker-alt"></i> South West, North West, Litoral, West<br>Cameroon</p>
+                        <p><i class="fas fa-envelope"></i> info.smartngo.com</p>
+                        <p><i class="fas fa-phone"></i> (237) 674109798</p>
+                        <p><i class="fas fa-clock"></i> Mon - Fri: 9:00 AM - 5:00 PM</p>
+                    </div>
+                </div>
             </div>
         </div>
-     </footer>
-
+        <div class="footer-bottom">
+            <p>&copy; 2024 SmartNGO. All rights reserved. | Together we can save lives</p>
+        </div>
+    </footer>
 </body>
 </html>
