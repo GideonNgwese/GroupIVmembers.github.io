@@ -1,0 +1,1129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Education - Smart NGO</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --themeRed: #e43a47;
+            --grey: #efefef;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url("images/banner.jpg");
+            background-size: cover;
+            background-attachment: fixed;
+            color: #ffffff;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: rgba(0,0,0,0.6);
+            position: fixed;
+            width: 100%;
+            z-index: 2;
+        }
+
+        .container {
+            width: 1140px;
+            margin: auto;
+            padding: 0 15px;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            padding: 15px 0;
+            height: 75px;
+        }
+
+        .logo img {
+            height: 100%;
+        }
+
+        button.menu-toggle {
+            display: none;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 10px;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li a {
+            color: #ffffff;
+            text-decoration: none;
+            padding: 10px 20px;
+            text-transform: uppercase;
+            font-size: 16px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+
+        nav ul li a:hover,
+        nav ul li a.active {
+            background-color: var(--themeRed);
+            color: #ffffff;
+            border-radius: 3px;
+        }
+
+        /* Education Section Styles */
+        .education {
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+            padding-top: 80px;
+        }
+
+        .videoplayer {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            transform: translate(-50%, -50%);
+            z-index: -1;
+        }
+
+        .sectionTitle {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--themeRed);
+            margin-bottom: 50px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+            padding-bottom: 20px;
+        }
+
+        .educationcontainer {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 40px;
+            border-radius: 15px;
+            max-width: 600px;
+            margin: 50px auto;
+        }
+
+        .educationcontainer h3 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #fff;
+            line-height: 1.4;
+        }
+
+        .educationcontainer strong {
+            color: var(--themeRed);
+        }
+
+        .educationcontainer p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .educationcontainer button {
+            background-color: var(--themeRed);
+            color: #fff;
+            border: none;
+            padding: 12px 25px;
+            font-size: 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .educationcontainer button:hover {
+            background-color: #fff;
+            color: var(--themeRed);
+            transform: translateY(-3px);
+        }
+
+        /* Responsive Styles */
+        @media screen and (max-width: 1140px) {
+            .container {
+                width: 100%;
+                padding: 0 20px;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            nav ul {
+                gap: 5px;
+            }
+
+            nav ul li a {
+                font-size: 14px;
+                padding: 8px 12px;
+            }
+
+            .educationcontainer {
+                padding: 20px;
+                margin: 30px 20px;
+            }
+
+            .educationcontainer h3 {
+                font-size: 2rem;
+            }
+
+            .sectionTitle {
+                font-size: 2rem;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .logo {
+                height: 60px;
+            }
+
+            nav ul li a {
+                font-size: 12px;
+                padding: 6px 10px;
+            }
+
+            .educationcontainer h3 {
+                font-size: 1.5rem;
+            }
+
+            .educationcontainer p {
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Footer Styles */
+        footer {
+            background: linear-gradient(rgba(0,0,0,0.95), rgba(0,0,0,0.95));
+            padding: 70px 0 0 0;
+            position: relative;
+            border-top: 3px solid var(--themeRed);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1.5fr;
+            gap: 40px;
+        }
+
+        .footer-section {
+            color: #ffffff;
+        }
+
+        .footer-section .title {
+            color: var(--themeRed);
+            font-size: 1.4rem;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-section .title:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--themeRed);
+        }
+
+        .footer-links {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .footer-links a {
+            color: #ffffff;
+            text-decoration: none;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+        }
+
+        .footer-links a:before {
+            content: '→';
+            margin-right: 10px;
+            color: var(--themeRed);
+        }
+
+        .footer-links a:hover {
+            color: var(--themeRed);
+            transform: translateX(5px);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            color: #ffffff;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 18px;
+        }
+
+        .social-links a:hover {
+            transform: translateY(-5px);
+        }
+
+        .social-links a.facebook:hover { background: #3b5998; }
+        .social-links a.whatsapp:hover { background: #25d366; }
+        .social-links a.linkedin:hover { background: #0077b5; }
+        .social-links a.twitter:hover { background: #1da1f2; }
+        .social-links a.instagram:hover { background: #e4405f; }
+        .social-links a.youtube:hover { background: #ff0000; }
+
+        .contact-info p {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .contact-info p i {
+            margin-right: 10px;
+            color: var(--themeRed);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 60px;
+            background: rgba(0, 0, 0, 0.8);
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .social-heading {
+            color: var(--themeRed);
+            font-size: 1.2rem;
+            margin: 30px 0 15px;
+            font-weight: 600;
+        }
+
+        .social-text {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+        }
+
+        /* Responsive footer */
+        @media screen and (max-width: 992px) {
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 30px;
+            }
+
+            .footer-section .title:after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+
+            .footer-links {
+                justify-content: center;
+            }
+
+            .social-links {
+                justify-content: center;
+            }
+
+            .contact-info p {
+                justify-content: center;
+            }
+        }
+
+        /* Programs Section Styles */
+        .programs-section {
+            padding: 100px 0;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .programs-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .program-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 40px 30px;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .program-card:hover {
+            transform: translateY(-10px);
+            background: rgba(228, 58, 71, 0.1);
+            border-color: var(--themeRed);
+        }
+
+        .program-icon {
+            width: 80px;
+            height: 80px;
+            background: rgba(228, 58, 71, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            transition: all 0.3s ease;
+        }
+
+        .program-icon i {
+            font-size: 35px;
+            color: var(--themeRed);
+            transition: all 0.3s ease;
+        }
+
+        .program-card:hover .program-icon {
+            background: var(--themeRed);
+        }
+
+        .program-card:hover .program-icon i {
+            color: #fff;
+            transform: rotateY(360deg);
+        }
+
+        .program-features {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+            text-align: left;
+        }
+
+        .program-features li {
+            margin: 10px 0;
+            color: #fff;
+        }
+
+        .program-features li i {
+            color: var(--themeRed);
+            margin-right: 10px;
+        }
+
+        .learn-more {
+            background: var(--themeRed);
+            color: #fff;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .learn-more:hover {
+            background: #fff;
+            color: var(--themeRed);
+            transform: scale(1.05);
+        }
+
+        /* Impact Section Styles */
+        .impact-section {
+            padding: 100px 0;
+            background: linear-gradient(rgba(228, 58, 71, 0.1), rgba(0, 0, 0, 0.8));
+        }
+
+        .impact-stats {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 20px;
+            min-width: 200px;
+        }
+
+        .stat-number {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--themeRed);
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 1.2rem;
+            color: #fff;
+        }
+
+        /* Success Stories Section */
+        .stories-section {
+            padding: 100px 0;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .stories-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .story-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .story-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: all 0.3s ease;
+        }
+
+        .story-content {
+            padding: 20px;
+        }
+
+        .story-card:hover {
+            transform: translateY(-10px);
+            background: rgba(228, 58, 71, 0.1);
+        }
+
+        .story-card:hover img {
+            transform: scale(1.1);
+        }
+
+        .location {
+            display: inline-block;
+            margin-top: 10px;
+            color: var(--themeRed);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Styles */
+        @media screen and (max-width: 992px) {
+            .programs-grid,
+            .stories-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .programs-grid,
+            .stories-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .impact-stats {
+                gap: 20px;
+            }
+
+            .stat-item {
+                width: 100%;
+            }
+        }
+
+        /* CTA Section Styles */
+        .cta-section {
+            padding: 100px 0;
+            background: linear-gradient(rgba(228, 58, 71, 0.9), rgba(0, 0, 0, 0.8));
+            text-align: center;
+        }
+
+        .cta-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .cta-btn {
+            padding: 15px 30px;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid #fff;
+        }
+
+        .cta-btn.primary {
+            background: #fff;
+            color: var(--themeRed);
+        }
+
+        .cta-btn.secondary {
+            background: transparent;
+            color: #fff;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        /* Newsletter Section */
+        .newsletter-section {
+            padding: 80px 0;
+            background: rgba(0, 0, 0, 0.5);
+            text-align: center;
+        }
+
+        .newsletter-content h2 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        .input-group {
+            max-width: 500px;
+            margin: 30px auto 0;
+            display: flex;
+            gap: 10px;
+        }
+
+        .input-group input {
+            flex: 1;
+            padding: 15px;
+            border: none;
+            border-radius: 25px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            font-size: 1rem;
+        }
+
+        .input-group button {
+            padding: 0 30px;
+            border: none;
+            border-radius: 25px;
+            background: var(--themeRed);
+            color: #fff;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .input-group button:hover {
+            background: #fff;
+            color: var(--themeRed);
+        }
+
+        /* Floating Actions */
+        .floating-actions {
+            position: fixed;
+            right: 30px;
+            bottom: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            z-index: 1000;
+        }
+
+        .float-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--themeRed);
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            transition: all 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .float-btn.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .float-btn:hover {
+            transform: scale(1.1);
+            background: #fff;
+            color: var(--themeRed);
+            box-shadow: 0 5px 15px rgba(228, 58, 71, 0.3);
+        }
+
+        /* Responsive Styles */
+        @media screen and (max-width: 768px) {
+            .cta-buttons {
+                flex-direction: column;
+                padding: 0 20px;
+            }
+
+            .input-group {
+                flex-direction: column;
+                padding: 0 20px;
+            }
+
+            .input-group button {
+                width: 100%;
+                padding: 15px;
+            }
+        }
+
+        /* Add these styles in your <style> section */
+        @media screen and (max-width: 768px) {
+            header .container {
+                position: relative;
+            }
+
+            .menu-toggle {
+                display: block !important;
+                background: none;
+                border: none;
+                color: #fff;
+                font-size: 24px;
+                cursor: pointer;
+                padding: 10px;
+                z-index: 1001;
+            }
+
+            nav {
+                width: 100%;
+            }
+
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(0, 0, 0, 0.95);
+                flex-direction: column;
+                padding: 20px 0;
+                text-align: center;
+                z-index: 1000;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            }
+
+            nav ul.active {
+                display: flex !important;
+            }
+
+            nav ul li {
+                margin: 0;
+                width: 100%;
+            }
+
+            nav ul li a {
+                display: block;
+                padding: 15px 20px;
+                font-size: 14px;
+                width: 100%;
+                box-sizing: border-box;
+                border-radius: 0;
+            }
+
+            nav ul li a:hover,
+            nav ul li a.active {
+                background-color: var(--themeRed);
+                padding-left: 30px;
+            }
+
+            .logo {
+                height: 50px;
+            }
+
+            /* Fix for iOS Safari */
+            .container {
+                overflow: visible;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="images/smart logo.JPG" alt="NGO logo">
+            </div>
+            <button class="menu-toggle" onclick="toggleMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="programs.html">Programs</a></li>
+                    <li><a href="educate.html" class="active">Education</a></li>
+                    <li><a href="galery.html">Gallery</a></li>
+                    <li><a href="join.html">Join Us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="education">
+        <video autoplay muted loop class="videoplayer">
+            <source src="videos/kids.mp4" type="video/mp4"/>
+        </video>
+
+        <div class="container">
+            <h2 class="sectionTitle">Education</h2>
+            
+            <div class="educationcontainer">
+                <h3>
+                    Education Is Essential For<br>
+                    <strong>BETTER FUTURE</strong>
+                </h3>
+                <p>
+                    For our future generation lets help to support the growth our children for they are the future of tomorrow. Life without education is a life of regret and illiteracy and no one wishes that for their children.
+                </p>
+                <button>EXPLORE NOW</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Programs Section -->
+    <section class="programs-section">
+        <div class="container">
+            <h2 class="sectionTitle">Our Educational Programs</h2>
+            <div class="programs-grid">
+                <div class="program-card">
+                    <div class="program-icon">
+                        <i class="fas fa-book-reader"></i>
+                    </div>
+                    <h3>Primary Education</h3>
+                    <p>Supporting basic education for children aged 5-12 years, ensuring a strong foundation for their future.</p>
+                    <ul class="program-features">
+                        <li><i class="fas fa-check"></i> Quality Teaching</li>
+                        <li><i class="fas fa-check"></i> Learning Materials</li>
+                        <li><i class="fas fa-check"></i> Safe Environment</li>
+                    </ul>
+                    <button class="learn-more">Learn More</button>
+                </div>
+
+                <div class="program-card">
+                    <div class="program-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3>Digital Skills</h3>
+                    <p>Empowering youth with essential digital skills for the modern workforce and future opportunities.</p>
+                    <ul class="program-features">
+                        <li><i class="fas fa-check"></i> Computer Training</li>
+                        <li><i class="fas fa-check"></i> Internet Skills</li>
+                        <li><i class="fas fa-check"></i> Digital Literacy</li>
+                    </ul>
+                    <button class="learn-more">Learn More</button>
+                </div>
+
+                <div class="program-card">
+                    <div class="program-icon">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                    </div>
+                    <h3>Teacher Training</h3>
+                    <p>Developing skilled educators through comprehensive training and professional development programs.</p>
+                    <ul class="program-features">
+                        <li><i class="fas fa-check"></i> Modern Methods</li>
+                        <li><i class="fas fa-check"></i> Classroom Management</li>
+                        <li><i class="fas fa-check"></i> Student Support</li>
+                    </ul>
+                    <button class="learn-more">Learn More</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Impact Section -->
+    <section class="impact-section">
+        <div class="container">
+            <h2 class="sectionTitle">Our Impact</h2>
+            <div class="impact-stats">
+                <div class="stat-item">
+                    <div class="stat-number" data-value="1000">0</div>
+                    <div class="stat-label">Students Supported</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-value="50">0</div>
+                    <div class="stat-label">Schools Built</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-value="200">0</div>
+                    <div class="stat-label">Teachers Trained</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-value="25">0</div>
+                    <div class="stat-label">Communities Reached</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Success Stories Section -->
+    <section class="stories-section">
+        <div class="container">
+            <h2 class="sectionTitle">Success Stories</h2>
+            <div class="stories-grid">
+                <div class="story-card">
+                    <img src="images/student1.jpg" alt="Student Success">
+                    <div class="story-content">
+                        <h3>Sarah's Journey</h3>
+                        <p>"Thanks to the education program, I am now pursuing my dream of becoming a teacher."</p>
+                        <span class="location">Bamenda, Cameroon</span>
+                    </div>
+                </div>
+                <div class="story-card">
+                    <img src="images/student2.jpg" alt="Student Success">
+                    <div class="story-content">
+                        <h3>John's Achievement</h3>
+                        <p>"The digital skills program opened new opportunities for my career in technology."</p>
+                        <span class="location">Douala, Cameroon</span>
+                    </div>
+                </div>
+                <div class="story-card">
+                    <img src="images/student3.jpg" alt="Student Success">
+                    <div class="story-content">
+                        <h3>Mary's Success</h3>
+                        <p>"Education changed my life and now I can help support my family and community."</p>
+                        <span class="location">Buea, Cameroon</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Add before the footer -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to Make a Difference?</h2>
+                <p>Join us in our mission to provide quality education to every child in Africa.</p>
+                <div class="cta-buttons">
+                    <button onclick="location.href='volunteer.html'" class="cta-btn primary">Become a Volunteer</button>
+                    <button onclick="location.href='donate.html'" class="cta-btn secondary">Support Our Cause</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Add a Newsletter Section -->
+    <section class="newsletter-section">
+        <div class="container">
+            <div class="newsletter-content">
+                <h2>Stay Updated</h2>
+                <p>Subscribe to our newsletter for updates on our educational initiatives.</p>
+                <form id="newsletter-form" onsubmit="return subscribeNewsletter(event)">
+                    <div class="input-group">
+                        <input type="email" placeholder="Enter your email" required>
+                        <button type="submit">Subscribe</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Add a Floating Action Button -->
+    <div class="floating-actions">
+        <button id="backToTop" class="float-btn" title="Back to Top">
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        <button class="float-btn chat-btn" title="Chat with us">
+            <i class="fas fa-comments"></i>
+        </button>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <img src="images/smart logo.JPG" alt="Smart NGO" style="height: 40px; margin-bottom: 20px;">
+                    <p class="footer-description">
+                        <span style="color: var(--themeRed); font-weight: 600;">Empowering</span> African communities through education and clean water initiatives. Together we can create lasting change and build a brighter future.
+                    </p>
+                    <h3 class="social-heading">Join Our Community</h3>
+                    <p class="social-text">Follow us on social media to stay updated with our latest projects.</p>
+                    <div class="social-links">
+                        <a href="#" class="facebook" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="whatsapp" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#" class="linkedin" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="twitter" title="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="instagram" title="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="youtube" title="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <div class="title">USEFUL LINKS</div>
+                    <div class="footer-links">
+                        <a href="index.html">Home</a>
+                        <a href="about.html">About Us</a>
+                        <a href="programs.html">Programs</a>
+                        <a href="educate.html">Education</a>
+                        <a href="galery.html">Gallery</a>
+                        <a href="donate.html">Donate</a>
+                        <a href="volunteer.html">Volunteer</a>
+                        <a href="contact.html">Contact</a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <div class="title">CONNECT WITH US</div>
+                    <div class="contact-info">
+                        <p><i class="fas fa-map-marker-alt"></i> South West, North West, Litoral, West<br>Cameroon</p>
+                        <p><i class="fas fa-envelope"></i> info.smartngo.com</p>
+                        <p><i class="fas fa-phone"></i> (237) 674109798</p>
+                        <p><i class="fas fa-clock"></i> Mon - Fri: 9:00 AM - 5:00 PM</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 SmartNGO. All rights reserved. | Together we can save lives</p>
+        </div>
+    </footer>
+
+    <script>
+        // Counter Animation
+        function animateCounter(element) {
+            const target = parseInt(element.dataset.value);
+            let count = 0;
+            const duration = 2000; // 2 seconds
+            const increment = target / (duration / 16); // 60fps
+
+            const timer = setInterval(() => {
+                count += increment;
+                if (count >= target) {
+                    element.textContent = target;
+                    clearInterval(timer);
+                } else {
+                    element.textContent = Math.floor(count);
+                }
+            }, 16);
+        }
+
+        // Intersection Observer for counters
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounter(entry.target);
+                    observer.unobserve(entry.target);
+                }
+            });
+        });
+
+        document.querySelectorAll('.stat-number').forEach(counter => {
+            observer.observe(counter);
+        });
+
+        // Back to Top Button
+        const backToTop = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Newsletter Subscription
+        function subscribeNewsletter(event) {
+            event.preventDefault();
+            const email = event.target.querySelector('input[type="email"]').value;
+            
+            // Add animation
+            const button = event.target.querySelector('button');
+            button.innerHTML = '<i class="fas fa-check"></i> Subscribed!';
+            button.style.background = '#28a745';
+            
+            // Reset after 3 seconds
+            setTimeout(() => {
+                button.innerHTML = 'Subscribe';
+                button.style.background = '';
+                event.target.reset();
+            }, 3000);
+            
+            // Here you would typically send the email to your server
+            console.log('Subscribed:', email);
+        }
+
+        // Add smooth scroll to all internal links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Add mobile menu functionality
+        function toggleMenu() {
+            const menu = document.querySelector('nav ul');
+            const menuToggle = document.querySelector('.menu-toggle');
+            
+            if (menu.style.display === 'flex') {
+                menu.style.display = 'none';
+                menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+            } else {
+                menu.style.display = 'flex';
+                menuToggle.innerHTML = '<i class="fas fa-times"></i>';
+            }
+        }
+
+        // Update click outside handler
+        document.addEventListener('click', function(event) {
+            const menu = document.querySelector('nav ul');
+            const menuToggle = document.querySelector('.menu-toggle');
+            
+            if (!menu.contains(event.target) && !menuToggle.contains(event.target)) {
+                menu.style.display = 'none';
+                menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+            }
+        });
+
+        // Close menu when clicking a link
+        document.querySelectorAll('nav ul li a').forEach(link => {
+            link.addEventListener('click', () => {
+                const menu = document.querySelector('nav ul');
+                const menuToggle = document.querySelector('.menu-toggle');
+                
+                menu.classList.remove('active');
+                menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+    </script>
+</body>
+</html>
