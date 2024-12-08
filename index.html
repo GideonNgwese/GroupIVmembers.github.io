@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart NGO</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Connect With Us Section Styles */
+        .connectcontainer {
+            padding: 25px;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 15px;
+            box-shadow: none;
+            border: none;
+        }
+
+        .connectcontainer .title {
+            color: #ffd700;
+            font-size: 24px;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+            position: relative;
+            font-weight: bold;
+        }
+
+        .connectcontainer .title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -8px;
+            width: 60px;
+            height: 3px;
+            background: #ffd700;
+            border-radius: 2px;
+        }
+
+        .connectcontainer p {
+            margin: 15px 0;
+            font-size: 16px;
+            line-height: 1.6;
+            color: #ffffff;
+        }
+
+        .contact-info {
+            display: flex;
+            align-items: flex-start;
+            margin: 20px 0;
+            gap: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        .contact-info:hover {
+            transform: translateX(10px);
+        }
+
+        .contact-info i {
+            width: 40px;
+            height: 40px;
+            background: #ffd700;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #1a1a1a;
+            font-size: 18px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-info:hover i {
+            background: #ffffff;
+            color: #1a1a1a;
+        }
+
+        .social-links {
+            margin-top: 30px;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            
+            align-items: center;
+            justify-content: center;
+            color: #ffd700;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+        }
+
+        .social-links a:hover {
+            background: #ffd700;
+            color: #1a1a1a;
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+        }
+
+        /* Responsive Design */
+        @media screen and (max-width: 768px) {
+            .connectcontainer {
+                padding: 20px;
+                margin: 10px;
+            }
+
+            .connectcontainer .title {
+                font-size: 20px;
+            }
+
+            .contact-info {
+                margin: 15px 0;
+                gap: 10px;
+            }
+
+            .contact-info i {
+                width: 35px;
+                height: 35px;
+                font-size: 16px;
+            }
+
+            .social-links {
+                justify-content: center;
+                margin-top: 25px;
+            }
+
+            .social-links a {
+                width: 35px;
+                height: 35px;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .connectcontainer {
+                padding: 15px;
+            }
+
+            .connectcontainer .title {
+                font-size: 18px;
+            }
+
+            .contact-info p {
+                font-size: 14px;
+            }
+
+            .social-links {
+                gap: 10px;
+            }
+
+            .contact-info:hover {
+                transform: translateX(5px);
+            }
+        }
+
+        .tooltip {
+            position: absolute;
+            background: #333;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 12px;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            white-space: nowrap;
+            margin-bottom: 5px;
+            pointer-events: none;
+            opacity: 0;
+            animation: fadeIn 0.3s forwards;
+        }
+
+        .copy-feedback {
+            position: absolute;
+            background: #4CAF50;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 12px;
+            right: 0;
+            top: -25px;
+            animation: fadeInOut 2s forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInOut {
+            0% { opacity: 0; }
+            20% { opacity: 1; }
+            80% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+
+        .contact-info {
+            position: relative;
+        }
+
+        .contact-info:active {
+            transform: scale(0.98);
+        }
+
+        /* Useful Links Styling */
+        .linkscontainer {
+            padding: 25px;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 15px;
+            box-shadow: none;
+            border: none;
+        }
+
+        .linkscontainer .title {
+            color: #ffd700;
+            font-size: 24px;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+            position: relative;
+            font-weight: bold;
+        }
+
+        .linkscontainer .title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -8px;
+            width: 60px;
+            height: 3px;
+            background: #ffd700;
+            border-radius: 2px;
+        }
+
+        .linkscontainer ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .linkscontainer ul li {
+            margin: 15px 0;
+            transition: all 0.3s ease;
+        }
+
+        .linkscontainer ul li a {
+            color: #ffffff;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 16px;
+            text-transform: capitalize;
+            padding: 8px 0;
+            transition: all 0.3s ease;
+        }
+
+        .linkscontainer ul li a::before {
+            content: '→';
+            color: #ffd700;
+            opacity: 0;
+            transform: translateX(-10px);
+            transition: all 0.3s ease;
+        }
+
+        .linkscontainer ul li a:hover {
+            color: #ffd700;
+            padding-left: 10px;
+        }
+
+        .linkscontainer ul li a:hover::before {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .linkscontainer ul li.active a {
+            color: #ffd700;
+        }
+
+        /* Animation for new links */
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .link-item-new {
+            animation: slideIn 0.5s ease forwards;
+        }
+
+        /* Responsive adjustments */
+        @media screen and (max-width: 768px) {
+            .linkscontainer {
+                padding: 20px;
+            }
+
+            .linkscontainer .title {
+                font-size: 20px;
+            }
+
+            .linkscontainer ul li a {
+                font-size: 14px;
+            }
+        }
+
+        .newslettercontainer {
+            padding: 25px;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 15px;
+            box-shadow: none;
+            border: none;
+        }
+
+        .newslettercontainer img {
+            height: 60px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+
+        .newslettercontainer p {
+            color: #ffffff;
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+
+        .newsletter-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .input-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .input-container:focus-within {
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 0 0 2px #ffd700;
+        }
+
+        .input-container i {
+            color: #ffd700;
+            font-size: 18px;
+            padding: 0 15px;
+        }
+
+        .input-container input {
+            width: 100%;
+            padding: 12px;
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 16px;
+            outline: none;
+        }
+
+        .input-container input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .newsletter-form button {
+            background: #ffd700;
+            color: #1a1a1a;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .newsletter-form button:hover {
+            background: #ffed4a;
+            transform: translateY(-2px);
+        }
+
+        .newsletter-form button:active {
+            transform: translateY(0);
+        }
+
+        .newsletter-message {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 14px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .newsletter-message.success {
+            background: rgba(76, 175, 80, 0.2);
+            color: #4CAF50;
+            opacity: 1;
+        }
+
+        .newsletter-message.error {
+            background: rgba(244, 67, 54, 0.2);
+            color: #F44336;
+            opacity: 1;
+        }
+
+        @media screen and (max-width: 768px) {
+            .newsletter-form {
+                gap: 10px;
+            }
+
+            .input-container input {
+                font-size: 14px;
+                padding: 10px;
+            }
+
+            .newsletter-form button {
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+        }
+
+        .fullcontainer.banner {
+            width: 100%;
+            min-height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                        url('images/banner.jpg') center/cover;
+            color: white;
+            position: relative;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            transition: 0.3s;
+            z-index: 1000;
+        }
+
+        header.scrolled {
+            background: rgba(0,0,0,0.9);
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 60px;
+            border-radius: 5px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            text-transform: capitalize;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: #ffd700;
+        }
+
+        /* Mobile Navigation Styles */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            padding: 10px;
+        }
+
+        .hamburger div {
+            width: 25px;
+            height: 3px;
+            background-color: white;
+            margin: 5px 0;
+            transition: 0.3s;
+        }
+
+        /* Responsive Styles */
+        @media screen and (max-width: 768px) {
+            /* Header & Navigation */
+            .hamburger {
+                display: block;
+                z-index: 1001;
+            }
+
+            nav ul {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                height: 100vh;
+                width: 100%;
+                background: rgba(0,0,0,0.95);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                transition: 0.5s;
+                z-index: 1000;
+            }
+
+            nav ul.active {
+                right: 0;
+            }
+
+            nav ul li {
+                margin: 20px 0;
+            }
+
+            /* Banner Content */
+            .banner .container {
+                padding-top: 100px;
+            }
+
+            .banner h1 {
+                font-size: 2rem;
+                padding: 0 15px;
+            }
+
+            .banner p {
+                font-size: 1rem;
+                padding: 0 20px;
+            }
+
+            .banner button {
+                padding: 12px 25px;
+                font-size: 1rem;
+            }
+
+            /* Footer Responsiveness */
+            footer .container {
+                grid-template-columns: 1fr;
+                gap: 30px;
+                padding: 20px;
+            }
+        }
+
+        /* Small Mobile Devices */
+        @media screen and (max-width: 480px) {
+            .logo img {
+                height: 45px;
+            }
+
+            .banner h1 {
+                font-size: 1.8rem;
+            }
+
+            .banner p {
+                font-size: 0.9rem;
+            }
+
+            .banner button {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Hamburger Animation */
+        .hamburger.active div:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .hamburger.active div:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active div:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -6px);
+        }
+    </style>
+    <!-- Add Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <div class="fullcontainer banner" id="homesection">
+        <header>
+            <div class="container">
+                <div class="logo">
+                    <img src="images/smart logo.JPG" alt="NGO logo">
+                </div> 
+                
+                <div class="hamburger">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                
+                <nav>
+                    <ul>
+                        <li>
+                            <a href="index.html">home</a>
+                        </li>
+                        <li>
+                            <a href="about.html">about us</a>
+                        </li>
+                        <li>
+                            <a href="programs.html">programs</a>
+                        </li>
+                        <li>
+                            <a href="educate.html">education</a>
+                        </li>
+                        <li>
+                            <a href="galery.html">gallery</a>
+                        </li>
+                        <li>
+                            <a href="join.html">join us</a>
+                        </li>
+                    </ul>
+                </nav>
+            
+            </div>
+        </header>
+    <div class="container">
+        <h1>Together we can <span>save lives</span></h1>
+        <p>
+            We are here to save the lives of Africans by, bringing good water, and education for the people of Africa. smart NGO is aimed at bringing an awareness about living healthy and building a good educational fundation
+        </p>
+        <button>start with a little</button>
+    </div>
+</div>
+<!--home section end here-->
+
+<footer>
+    <div class="container">
+        <div class="newslettercontainer">
+            <img src="images/smart logo.JPG" alt="Smart NGO logo" />
+            <p>
+                Stay updated with our latest news, programs, and initiatives. Subscribe to our newsletter for regular updates.
+            </p>
+            <form id="newsletterForm" class="newsletter-form">
+                <div class="input-container">
+                    <i class="fas fa-envelope"></i>
+                    <input type="email" id="newsletterEmail" placeholder="Enter your email address" required />
+                </div>
+                <button type="submit">Subscribe</button>
+            </form>
+            <div id="newsletterMessage" class="newsletter-message"></div>
+        </div>
+
+        <div class="linkscontainer">
+            <div class="title">USEFUL LINKS</div>
+            <ul id="usefulLinks">
+                <li><a href="index.html" data-page="home">Home</a></li>
+                <li><a href="about.html" data-page="about">About Us</a></li>
+                <li><a href="programs.html" data-page="programs">Programs</a></li>
+                <li><a href="educate.html" data-page="education">Education</a></li>
+                <li><a href="gallery.html" data-page="gallery">Gallery</a></li>
+                <li><a href="join.html" data-page="join">Join Us</a></li>
+            </ul>
+        </div>
+
+        <div class="connectcontainer">
+            <div class="title">Connect With Us</div>
+            
+            <div class="contact-info">
+                <i class="fas fa-map-marker-alt"></i>
+                <p>
+                    South West, North West, Litoral, West <br />
+                    Cameroon
+                </p>
+            </div>
+            
+            <div class="contact-info">
+                <i class="fas fa-envelope"></i>
+                <p>info@smartngo.com</p>
+            </div>
+            
+            <div class="contact-info">
+                <i class="fas fa-phone"></i>
+                <p>(+237) 674109798/679481029</p>
+            </div>
+
+            <div class="social-links">
+                <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+    </div>
+ </footer>
+
+<script>
+    // Get references to elements
+    const connectContainer = document.querySelector('.connectcontainer');
+    const socialLinks = document.querySelectorAll('.social-links a');
+    const contactInfos = document.querySelectorAll('.contact-info');
+
+    // Social media URLs
+    const socialMediaUrls = {
+        facebook: 'https://facebook.com/smartngo',
+        twitter: 'https://twitter.com/smartngo',
+        instagram: 'https://instagram.com/smartngo',
+        linkedin: 'https://linkedin.com/company/smartngo'
+    };
+
+    // Contact information data
+    const contactData = {
+        address: {
+            text: 'South West, North West, Litoral, West, Cameroon',
+            link: 'https://maps.google.com/?q=Cameroon'
+        },
+        email: {
+            text: 'info@smartngo.com',
+            link: 'mailto:info@smartngo.com'
+        },
+        phone: {
+            text: '(+237) 674109798/679481029',
+            link: 'tel:+237674109798'
+        }
+    };
+
+    // Add click handlers for social media links
+    socialLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const platform = link.getAttribute('title').toLowerCase();
+            if (socialMediaUrls[platform]) {
+                window.open(socialMediaUrls[platform], '_blank');
+            }
+        });
+
+        // Add tooltip functionality
+        link.addEventListener('mouseover', (e) => {
+            const title = link.getAttribute('title');
+            const tooltip = document.createElement('div');
+            tooltip.className = 'tooltip';
+            tooltip.textContent = title;
+            link.appendChild(tooltip);
+        });
+
+        link.addEventListener('mouseout', () => {
+            const tooltip = link.querySelector('.tooltip');
+            if (tooltip) {
+                tooltip.remove();
+            }
+        });
+    });
+
+    // Add click handlers for contact info items
+    contactInfos.forEach(info => {
+        const icon = info.querySelector('i');
+        const text = info.querySelector('p');
+
+        info.addEventListener('click', () => {
+            // Determine which contact info was clicked
+            if (icon.classList.contains('fa-map-marker-alt')) {
+                window.open(contactData.address.link, '_blank');
+            } else if (icon.classList.contains('fa-envelope')) {
+                window.location.href = contactData.email.link;
+            } else if (icon.classList.contains('fa-phone')) {
+                window.location.href = contactData.phone.link;
+            }
+        });
+
+        // Add cursor pointer to show clickable
+        info.style.cursor = 'pointer';
+    });
+
+    // Add copy to clipboard functionality
+    contactInfos.forEach(info => {
+        info.addEventListener('click', async (e) => {
+            const text = info.querySelector('p').textContent.trim();
+            
+            try {
+                await navigator.clipboard.writeText(text);
+                
+                // Show copy feedback
+                const feedback = document.createElement('div');
+                feedback.className = 'copy-feedback';
+                feedback.textContent = 'Copied!';
+                info.appendChild(feedback);
+                
+                setTimeout(() => {
+                    feedback.remove();
+                }, 2000);
+            } catch (err) {
+                console.error('Failed to copy text: ', err);
+            }
+        });
+    });
+
+    // Useful Links functionality
+    document.addEventListener('DOMContentLoaded', function() {
+        const usefulLinks = document.getElementById('usefulLinks');
+        const links = usefulLinks.getElementsByTagName('a');
+
+        // Highlight current page
+        const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+        Array.from(links).forEach(link => {
+            if (link.getAttribute('href') === currentPage) {
+                link.parentElement.classList.add('active');
+            }
+        });
+
+        // Add hover effect with arrow animation
+        Array.from(links).forEach(link => {
+            link.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateX(10px)';
+            });
+
+            link.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateX(0)';
+            });
+
+            // Add click effect
+            link.addEventListener('click', function(e) {
+                // Create ripple effect
+                const ripple = document.createElement('div');
+                ripple.classList.add('ripple');
+                this.appendChild(ripple);
+
+                // Remove ripple after animation
+                setTimeout(() => {
+                    ripple.remove();
+                }, 1000);
+
+                // Store the clicked page in localStorage
+                localStorage.setItem('lastVisitedPage', this.getAttribute('data-page'));
+            });
+        });
+
+        // Track last visited page
+        const lastVisitedPage = localStorage.getItem('lastVisitedPage');
+        if (lastVisitedPage) {
+            const lastVisitedLink = document.querySelector(`[data-page="${lastVisitedPage}"]`);
+            if (lastVisitedLink) {
+                lastVisitedLink.parentElement.classList.add('last-visited');
+            }
+        }
+
+        // Add smooth scroll for same-page links
+        Array.from(links).forEach(link => {
+            if (link.getAttribute('href').startsWith('#')) {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetElement = document.getElementById(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            }
+        });
+    });
+
+    // Add dynamic link highlighting
+    let lastScrollTop = 0;
+    window.addEventListener('scroll', function() {
+        const st = window.pageYOffset || document.documentElement.scrollTop;
+        const links = document.querySelectorAll('.linkscontainer a');
+        
+        links.forEach(link => {
+            const section = document.querySelector(link.getAttribute('href'));
+            if (section) {
+                const rect = section.getBoundingClientRect();
+                if (rect.top >= 0 && rect.top <= window.innerHeight / 2) {
+                    document.querySelector('.active')?.classList.remove('active');
+                    link.parentElement.classList.add('active');
+                }
+            }
+        });
+        
+        lastScrollTop = st <= 0 ? 0 : st;
+    }, false);
+
+    // Newsletter functionality
+    document.getElementById('newsletterForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        const email = document.getElementById('newsletterEmail').value;
+        const messageDiv = document.getElementById('newsletterMessage');
+        const submitButton = this.querySelector('button');
+        const originalButtonText = submitButton.textContent;
+
+        // Email validation
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            showMessage('Please enter a valid email address', 'error');
+            return;
+        }
+
+        // Show loading state
+        submitButton.disabled = true;
+        submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Subscribing...';
+
+        try {
+            // Simulate API call (replace with your actual API endpoint)
+            await new Promise(resolve => setTimeout(resolve, 1500));
+
+            // Success
+            showMessage('Thank you for subscribing! Please check your email for confirmation.', 'success');
+            this.reset();
+
+            // Add success animation to input
+            const inputContainer = document.querySelector('.input-container');
+            inputContainer.style.border = '2px solid #4CAF50';
+            setTimeout(() => {
+                inputContainer.style.border = 'none';
+            }, 2000);
+
+        } catch (error) {
+            showMessage('Something went wrong. Please try again later.', 'error');
+        } finally {
+            // Reset button state
+            submitButton.disabled = false;
+            submitButton.textContent = originalButtonText;
+        }
+    });
+
+    function showMessage(message, type) {
+        const messageDiv = document.getElementById('newsletterMessage');
+        messageDiv.textContent = message;
+        messageDiv.className = 'newsletter-message ' + type;
+        
+        // Auto hide message after 5 seconds
+        setTimeout(() => {
+            messageDiv.className = 'newsletter-message';
+        }, 5000);
+    }
+
+    // Add input validation feedback
+    const newsletterEmail = document.getElementById('newsletterEmail');
+    newsletterEmail.addEventListener('input', function() {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        const inputContainer = this.parentElement;
+        
+        if (this.value && !emailRegex.test(this.value)) {
+            inputContainer.style.boxShadow = '0 0 0 2px #F44336';
+        } else if (this.value && emailRegex.test(this.value)) {
+            inputContainer.style.boxShadow = '0 0 0 2px #4CAF50';
+        } else {
+            inputContainer.style.boxShadow = 'none';
+        }
+    });
+
+    // Mobile Menu Toggle
+    const hamburger = document.querySelector('.hamburger');
+    const navMenu = document.querySelector('nav ul');
+
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        navMenu.classList.toggle('active');
+    });
+
+    // Close menu when clicking a link
+    document.querySelectorAll('nav a').forEach(link => {
+        link.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+        });
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!e.target.closest('nav') && !e.target.closest('.hamburger')) {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+        }
+    });
+</script>
+
+</body>
+</html>
