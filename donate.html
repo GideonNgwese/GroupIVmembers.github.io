@@ -1,0 +1,1394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donate - Smart NGO</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --themeRed: #e43a47;
+            --grey: #efefef;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url("images/banner.jpg");
+            background-size: cover;
+            background-attachment: fixed;
+            color: #ffffff;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: rgba(0,0,0,0.6);
+            position: fixed;
+            width: 100%;
+            z-index: 2;
+        }
+
+        .container {
+            width: 1140px;
+            margin: auto;
+            padding: 0 15px;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            padding: 15px 0;
+            height: 75px;
+        }
+
+        .logo img {
+            height: 100%;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 10px;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li a {
+            color: #ffffff;
+            text-decoration: none;
+            padding: 10px 20px;
+            text-transform: uppercase;
+            font-size: 16px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+
+        nav ul li a:hover,
+        nav ul li a.active {
+            background-color: var(--themeRed);
+            color: #ffffff;
+            border-radius: 3px;
+        }
+
+        /* Mobile Menu */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 10px;
+        }
+
+        @media screen and (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(0, 0, 0, 0.95);
+                flex-direction: column;
+                padding: 20px 0;
+            }
+
+            nav ul.active {
+                display: flex;
+            }
+
+            nav ul li {
+                width: 100%;
+                text-align: center;
+            }
+
+            nav ul li a {
+                padding: 15px 20px;
+                display: block;
+                width: 100%;
+            }
+        }
+
+        /* Donation Banner Styles */
+        .donation-banner {
+            padding: 150px 0 80px;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .donation-banner h1 {
+            font-size: 3.5rem;
+            color: var(--themeRed);
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .donation-banner p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            line-height: 1.6;
+        }
+
+        .impact-stats {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin-top: 40px;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            backdrop-filter: blur(5px);
+            transition: all 0.3s ease;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-10px);
+            background: rgba(228, 58, 71, 0.2);
+        }
+
+        .stat-item i {
+            font-size: 2.5rem;
+            color: var(--themeRed);
+            margin-bottom: 15px;
+        }
+
+        .stat-item .counter {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        /* Donation Options Styles */
+        .donation-options {
+            padding: 80px 0;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--themeRed);
+            margin-bottom: 50px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .donation-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .donation-card:hover {
+            transform: translateY(-10px);
+            background: rgba(228, 58, 71, 0.1);
+        }
+
+        .card-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .card-header i {
+            font-size: 3rem;
+            color: var(--themeRed);
+            margin-bottom: 15px;
+        }
+
+        .card-header h3 {
+            font-size: 1.5rem;
+            margin: 10px 0;
+        }
+
+        .progress-bar {
+            background: rgba(255, 255, 255, 0.1);
+            height: 10px;
+            border-radius: 5px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+
+        .progress {
+            height: 100%;
+            background: var(--themeRed);
+            border-radius: 5px;
+        }
+
+        .progress-text {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .amount-options {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .amount-btn {
+            padding: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .amount-btn:hover {
+            background: var(--themeRed);
+            border-color: var(--themeRed);
+        }
+
+        .donate-btn {
+            width: 100%;
+            padding: 12px;
+            background: var(--themeRed);
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+
+        .donate-btn:hover {
+            background: #fff;
+            color: var(--themeRed);
+        }
+
+        /* Responsive Styles */
+        @media screen and (max-width: 992px) {
+            .options-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .donation-banner h1 {
+                font-size: 2.5rem;
+            }
+
+            .impact-stats {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .options-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .amount-options {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Payment Section Styles */
+        .payment-section {
+            padding: 80px 0;
+            background: rgba(0, 0, 0, 0.4);
+        }
+
+        .payment-methods {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .payment-option {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 40px 30px;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .payment-option:hover {
+            transform: translateY(-10px);
+            background: rgba(228, 58, 71, 0.1);
+        }
+
+        .payment-option i {
+            font-size: 3rem;
+            color: var(--themeRed);
+            margin-bottom: 20px;
+        }
+
+        .payment-option h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+
+        .payment-details {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .payment-details p {
+            margin: 10px 0;
+        }
+
+        .card-icons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .card-icons i {
+            font-size: 2.5rem;
+            color: #fff;
+        }
+
+        /* Add to your existing responsive styles */
+        @media screen and (max-width: 992px) {
+            .payment-methods {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .payment-methods {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Testimonials Section Styles */
+        .testimonials-section {
+            padding: 80px 0;
+            background: rgba(0, 0, 0, 0.4);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-10px);
+            background: rgba(228, 58, 71, 0.1);
+        }
+
+        .testimonial-content {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .testimonial-content i {
+            color: var(--themeRed);
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        .testimonial-content p {
+            font-style: italic;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.6;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .testimonial-author img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .author-info h4 {
+            color: #fff;
+            margin: 0;
+        }
+
+        .author-info span {
+            color: var(--themeRed);
+            font-size: 0.9rem;
+        }
+
+        /* FAQ Section Styles */
+        .faq-section {
+            padding: 80px 0;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .faq-grid {
+            max-width: 800px;
+            margin: 50px auto 0;
+        }
+
+        .faq-item {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            margin-bottom: 15px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: rgba(228, 58, 71, 0.1);
+        }
+
+        .faq-question h3 {
+            margin: 0;
+            font-size: 1.1rem;
+            color: #fff;
+        }
+
+        .faq-question i {
+            color: var(--themeRed);
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            padding: 0 20px;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 200px;
+            padding: 0 20px 20px;
+        }
+
+        .faq-answer p {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        /* Additional Responsive Styles */
+        @media screen and (max-width: 992px) {
+            .testimonials-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .testimonial-card {
+                padding: 20px;
+            }
+
+            .faq-question h3 {
+                font-size: 1rem;
+            }
+        }
+
+        /* Footer Styles */
+        footer {
+            background: linear-gradient(rgba(0,0,0,0.95), rgba(0,0,0,0.95));
+            color: #fff;
+            padding: 70px 0 0;
+            border-top: 3px solid var(--themeRed);
+            margin-top: 50px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1.5fr;
+            gap: 40px;
+        }
+
+        .footer-section h3 {
+            color: var(--themeRed);
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-section h3:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--themeRed);
+        }
+
+        .footer-section.about .contact-info {
+            margin: 20px 0;
+        }
+
+        .footer-section.about .contact-info p {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .footer-section.about .contact-info i {
+            margin-right: 10px;
+            color: var(--themeRed);
+        }
+
+        .footer-section .socials {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .footer-section .socials a {
+            width: 35px;
+            height: 35px;
+            background: rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .footer-section .socials a:hover {
+            background: var(--themeRed);
+            transform: translateY(-5px);
+        }
+
+        .footer-section.links ul,
+        .footer-section.programs ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-section.links ul li,
+        .footer-section.programs ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-section.links ul li a,
+        .footer-section.programs ul li a {
+            color: #fff;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+        }
+
+        .footer-section.links ul li a:before,
+        .footer-section.programs ul li a:before {
+            content: '→';
+            margin-right: 10px;
+            color: var(--themeRed);
+        }
+
+        .footer-section.links ul li a:hover,
+        .footer-section.programs ul li a:hover {
+            color: var(--themeRed);
+            transform: translateX(10px);
+        }
+
+        .footer-section.newsletter form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .footer-section.newsletter input {
+            padding: 12px;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 5px;
+            color: #fff;
+        }
+
+        .footer-section.newsletter button {
+            padding: 12px;
+            background: var(--themeRed);
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .footer-section.newsletter button:hover {
+            background: #fff;
+            color: var(--themeRed);
+        }
+
+        .office-hours {
+            margin-top: 20px;
+        }
+
+        .office-hours h4 {
+            color: var(--themeRed);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .footer-bottom {
+            background: rgba(0,0,0,0.8);
+            padding: 20px 0;
+            margin-top: 50px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .footer-bottom .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-menu {
+            display: flex;
+            gap: 20px;
+        }
+
+        .footer-menu a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-menu a:hover {
+            color: var(--themeRed);
+        }
+
+        @media screen and (max-width: 992px) {
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-section h3:after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+
+            .footer-section {
+                text-align: center;
+            }
+
+            .footer-section .socials {
+                justify-content: center;
+            }
+
+            .footer-section.about .contact-info p {
+                justify-content: center;
+            }
+
+            .footer-section.links ul li a:before,
+            .footer-section.programs ul li a:before {
+                display: none;
+            }
+
+            .footer-bottom .container {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+
+            .footer-menu {
+                justify-content: center;
+            }
+        }
+
+        /* General Responsive Styles */
+        @media screen and (max-width: 1200px) {
+            .container {
+                width: 95%;
+                padding: 0 20px;
+            }
+        }
+
+        @media screen and (max-width: 992px) {
+            /* Header */
+            nav ul li a {
+                padding: 8px 15px;
+                font-size: 14px;
+            }
+
+            /* Donation Banner */
+            .donation-banner h1 {
+                font-size: 2.8rem;
+            }
+
+            /* Options Grid */
+            .options-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+
+            /* Payment Methods */
+            .payment-methods {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            /* Testimonials */
+            .testimonials-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            /* Footer */
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 30px;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            /* Header */
+            .menu-toggle {
+                display: block;
+            }
+
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(0, 0, 0, 0.95);
+                flex-direction: column;
+                padding: 20px 0;
+            }
+
+            nav ul.active {
+                display: flex;
+            }
+
+            nav ul li {
+                width: 100%;
+            }
+
+            nav ul li a {
+                width: 100%;
+                padding: 15px 20px;
+                text-align: center;
+            }
+
+            /* Donation Banner */
+            .donation-banner {
+                padding: 100px 0 50px;
+            }
+
+            .donation-banner h1 {
+                font-size: 2.2rem;
+            }
+
+            .impact-stats {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            /* Options Grid */
+            .options-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .donation-card {
+                padding: 20px;
+            }
+
+            /* Payment Methods */
+            .payment-methods {
+                grid-template-columns: 1fr;
+            }
+
+            /* Testimonials */
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+
+            /* FAQ */
+            .faq-grid {
+                padding: 0 15px;
+            }
+
+            .faq-question h3 {
+                font-size: 1rem;
+            }
+
+            /* Footer */
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .footer-section h3:after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+
+            .footer-section .socials,
+            .footer-menu {
+                justify-content: center;
+            }
+
+            .footer-section.about .contact-info p {
+                justify-content: center;
+            }
+
+            .footer-bottom .container {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            /* Donation Banner */
+            .donation-banner h1 {
+                font-size: 1.8rem;
+            }
+
+            .donation-banner p {
+                font-size: 1rem;
+            }
+
+            /* Amount Options */
+            .amount-options {
+                grid-template-columns: 1fr;
+            }
+
+            /* Payment Methods */
+            .payment-option {
+                padding: 20px;
+            }
+
+            .payment-option h3 {
+                font-size: 1.2rem;
+            }
+
+            /* Testimonials */
+            .testimonial-card {
+                padding: 15px;
+            }
+
+            .testimonial-author img {
+                width: 50px;
+                height: 50px;
+            }
+
+            /* FAQ */
+            .faq-question {
+                padding: 15px;
+            }
+
+            .faq-answer {
+                padding: 0 15px;
+            }
+
+            /* Footer */
+            .footer-section {
+                padding: 0 15px;
+            }
+
+            .footer-menu {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+
+        /* Small Mobile Devices */
+        @media screen and (max-width: 360px) {
+            .donation-banner h1 {
+                font-size: 1.5rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .card-header i {
+                font-size: 2rem;
+            }
+
+            .card-header h3 {
+                font-size: 1.2rem;
+            }
+
+            .donate-btn {
+                font-size: 0.9rem;
+                padding: 10px;
+            }
+
+            .footer-section h3 {
+                font-size: 1.2rem;
+            }
+        }
+
+        /* Height-based Media Queries */
+        @media screen and (max-height: 700px) {
+            .donation-banner {
+                padding: 80px 0 40px;
+            }
+
+            .impact-stats {
+                margin-top: 20px;
+            }
+        }
+
+        /* Landscape Mode */
+        @media screen and (max-height: 500px) and (orientation: landscape) {
+            .donation-banner {
+                padding: 60px 0 30px;
+            }
+
+            .impact-stats {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="images/logo.png" alt="Logo">
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="donate.html">Donate</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+        </div>
+    </header>
+    <!-- Donation Banner Section -->
+<section class="donation-banner">
+    <div class="container">
+        <h1>Make a Difference Today</h1>
+        <p>Your donation helps provide clean water and quality education to communities across Africa</p>
+        <div class="impact-stats">
+            <div class="stat-item">
+                <i class="fas fa-tint"></i>
+                <span class="counter" data-target="50">0</span>
+                <p>Water Projects</p>
+            </div>
+            <div class="stat-item">
+                <i class="fas fa-school"></i>
+                <span class="counter" data-target="25">0</span>
+                <p>Schools Built</p>
+            </div>
+            <div class="stat-item">
+                <i class="fas fa-users"></i>
+                <span class="counter" data-target="1000">0</span>
+                <p>Lives Impacted</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Donation Options Section -->
+<section class="donation-options">
+    <div class="container">
+        <h2 class="section-title">Choose Your Impact</h2>
+        <div class="options-grid">
+            <div class="donation-card">
+                <div class="card-header">
+                    <i class="fas fa-hand-holding-water"></i>
+                    <h3>Water Project</h3>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress" style="width: 75%"></div>
+                    <span class="progress-text">75% of goal reached</span>
+                </div>
+                <p>Help provide clean water access to communities</p>
+                <div class="amount-options">
+                    <button class="amount-btn" data-amount="5000">5,000 FCFA</button>
+                    <button class="amount-btn" data-amount="10000">10,000 FCFA</button>
+                    <button class="amount-btn" data-amount="25000">25,000 FCFA</button>
+                    <button class="amount-btn custom">Custom</button>
+                </div>
+                <button class="donate-btn">Donate Now</button>
+            </div>
+
+            <div class="donation-card">
+                <div class="card-header">
+                    <i class="fas fa-graduation-cap"></i>
+                    <h3>Education Support</h3>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress" style="width: 60%"></div>
+                    <span class="progress-text">60% of goal reached</span>
+                </div>
+                <p>Support education initiatives for children</p>
+                <div class="amount-options">
+                    <button class="amount-btn" data-amount="15000">15,000 FCFA</button>
+                    <button class="amount-btn" data-amount="30000">30,000 FCFA</button>
+                    <button class="amount-btn" data-amount="50000">50,000 FCFA</button>
+                    <button class="amount-btn custom">Custom</button>
+                </div>
+                <button class="donate-btn">Donate Now</button>
+            </div>
+
+            <div class="donation-card">
+                <div class="card-header">
+                    <i class="fas fa-hands-helping"></i>
+                    <h3>Community Development</h3>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress" style="width: 45%"></div>
+                    <span class="progress-text">45% of goal reached</span>
+                </div>
+                <p>Support overall community development projects</p>
+                <div class="amount-options">
+                    <button class="amount-btn" data-amount="20000">20,000 FCFA</button>
+                    <button class="amount-btn" data-amount="40000">40,000 FCFA</button>
+                    <button class="amount-btn" data-amount="75000">75,000 FCFA</button>
+                    <button class="amount-btn custom">Custom</button>
+                </div>
+                <button class="donate-btn">Donate Now</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Add this after the donation-options section -->
+<section class="payment-section">
+    <div class="container">
+        <h2 class="section-title">Payment Methods</h2>
+        <div class="payment-methods">
+            <div class="payment-option">
+                <i class="fas fa-mobile-alt"></i>
+                <h3>Mobile Money</h3>
+                <div class="payment-details">
+                    <p>MTN MoMo: 674109798</p>
+                    <p>Orange Money: 674109798</p>
+                </div>
+            </div>
+
+            <div class="payment-option">
+                <i class="fas fa-university"></i>
+                <h3>Bank Transfer</h3>
+                <div class="payment-details">
+                    <p>Bank: SMART NGO BANK</p>
+                    <p>Account: 0123456789</p>
+                </div>
+            </div>
+
+            <div class="payment-option">
+                <i class="fas fa-credit-card"></i>
+                <h3>Card Payment</h3>
+                <div class="payment-details">
+                    <div class="card-icons">
+                        <i class="fab fa-cc-visa"></i>
+                        <i class="fab fa-cc-mastercard"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials Section -->
+<section class="testimonials-section">
+    <div class="container">
+        <h2 class="section-title">What Our Donors Say</h2>
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <div class="testimonial-content">
+                    <i class="fas fa-quote-left"></i>
+                    <p>"Supporting Smart NGO has been incredibly rewarding. Seeing the direct impact of my donations on communities is truly inspiring."</p>
+                </div>
+                <div class="testimonial-author">
+                    <img src="images/donor1.jpg" alt="Donor">
+                    <div class="author-info">
+                        <h4>Sarah Johnson</h4>
+                        <span>Regular Donor</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <div class="testimonial-content">
+                    <i class="fas fa-quote-left"></i>
+                    <p>"The transparency and regular updates about project progress make me confident about my contributions."</p>
+                </div>
+                <div class="testimonial-author">
+                    <img src="images/donor2.jpg" alt="Donor">
+                    <div class="author-info">
+                        <h4>John Smith</h4>
+                        <span>Monthly Supporter</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <div class="testimonial-content">
+                    <i class="fas fa-quote-left"></i>
+                    <p>"Being able to choose specific projects to support makes giving more meaningful and personal."</p>
+                </div>
+                <div class="testimonial-author">
+                    <img src="images/donor3.jpg" alt="Donor">
+                    <div class="author-info">
+                        <h4>Emma Davis</h4>
+                        <span>Project Sponsor</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ Section -->
+<section class="faq-section">
+    <div class="container">
+        <h2 class="section-title">Frequently Asked Questions</h2>
+        <div class="faq-grid">
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <h3>How are donations used?</h3>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Your donations directly support our water projects, education initiatives, and community development programs. We ensure maximum impact with minimal administrative costs.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <h3>Is my donation tax-deductible?</h3>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes, all donations to Smart NGO are tax-deductible. We provide receipts for all contributions.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <h3>Can I make a recurring donation?</h3>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes, you can set up monthly, quarterly, or annual donations through our payment system.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <h3>How do I track my donation's impact?</h3>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>We provide regular updates through email and our website about project progress and impact stories.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer Section -->
+<footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-section about">
+                <img src="images/smart logo.JPG" alt="Smart NGO" style="height: 40px; margin-bottom: 20px;">
+                <p class="footer-description">
+                    <span style="color: var(--themeRed); font-weight: 600;">Empowering</span> African communities through education and clean water initiatives. Together we can create lasting change and build a brighter future.
+                </p>
+                <div class="contact-info">
+                    <p><i class="fas fa-phone"></i> (237) 674109798</p>
+                    <p><i class="fas fa-envelope"></i> info.smartngo.com</p>
+                    <p><i class="fas fa-map-marker-alt"></i> South West, North West, Litoral, West, Cameroon</p>
+                </div>
+                <div class="socials">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                    <a href="#"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-section links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="programs.html">Programs</a></li>
+                    <li><a href="educate.html">Education</a></li>
+                    <li><a href="galery.html">Gallery</a></li>
+                    <li><a href="donate.html">Donate</a></li>
+                    <li><a href="volunteer.html">Volunteer</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section programs">
+                <h3>Our Programs</h3>
+                <ul>
+                    <li><a href="#">Water Projects</a></li>
+                    <li><a href="#">Education Support</a></li>
+                    <li><a href="#">Community Development</a></li>
+                    <li><a href="#">Youth Empowerment</a></li>
+                    <li><a href="#">Health Initiatives</a></li>
+                    <li><a href="#">Women Empowerment</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section newsletter">
+                <h3>Newsletter</h3>
+                <p>Subscribe to get updates about our projects and impact.</p>
+                <form onsubmit="return subscribeNewsletter(event)">
+                    <input type="email" placeholder="Enter your email" required>
+                    <button type="submit" class="btn">Subscribe</button>
+                </form>
+                <div class="office-hours">
+                    <h4><i class="fas fa-clock"></i> Office Hours</h4>
+                    <p>Monday - Friday: 9:00 AM - 5:00 PM</p>
+                    <p>Saturday: 9:00 AM - 1:00 PM</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <div class="container">
+            <p>&copy; 2024 SmartNGO. All rights reserved. | Together we can save lives</p>
+            <div class="footer-menu">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Use</a>
+                <a href="#">Cookie Policy</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // FAQ Toggle Function
+    function toggleFaq(element) {
+        const faqItem = element.parentElement;
+        const wasActive = faqItem.classList.contains('active');
+        
+        // Close all FAQs
+        document.querySelectorAll('.faq-item').forEach(item => {
+            item.classList.remove('active');
+        });
+        
+        // Open clicked FAQ if it wasn't active
+        if (!wasActive) {
+            faqItem.classList.add('active');
+        }
+    }
+
+    // Counter Animation
+    function animateCounter(element) {
+        const target = parseInt(element.dataset.target);
+        let count = 0;
+        const duration = 2000;
+        const increment = target / (duration / 16);
+
+        const timer = setInterval(() => {
+            count += increment;
+            if (count >= target) {
+                element.textContent = target;
+                clearInterval(timer);
+            } else {
+                element.textContent = Math.floor(count);
+            }
+        }, 16);
+    }
+
+    // Initialize counters when they come into view
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                animateCounter(entry.target);
+                observer.unobserve(entry.target);
+            }
+        });
+    });
+
+    document.querySelectorAll('.counter').forEach(counter => {
+        observer.observe(counter);
+    });
+
+    // Mobile Menu Toggle
+    function toggleMenu() {
+        const menu = document.querySelector('nav ul');
+        const menuToggle = document.querySelector('.menu-toggle');
+        
+        if (menu.classList.contains('active')) {
+            menu.classList.remove('active');
+            menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+        } else {
+            menu.classList.add('active');
+            menuToggle.innerHTML = '<i class="fas fa-times"></i>';
+        }
+    }
+
+    // Close menu when clicking outside
+    document.addEventListener('click', function(event) {
+        const menu = document.querySelector('nav ul');
+        const menuToggle = document.querySelector('.menu-toggle');
+        
+        if (!menu.contains(event.target) && !menuToggle.contains(event.target)) {
+            menu.classList.remove('active');
+            menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+        }
+    });
+</script>
+</body>
+</html> 
