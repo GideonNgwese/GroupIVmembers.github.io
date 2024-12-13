@@ -16,7 +16,7 @@
         }
 
         .connectcontainer .title {
-            color: #ffd700;
+            color: #e43a47;
             font-size: 24px;
             text-transform: uppercase;
             margin-bottom: 30px;
@@ -31,7 +31,7 @@
             bottom: -8px;
             width: 60px;
             height: 3px;
-            background: #ffd700;
+            background: #e43a47;
             border-radius: 2px;
         }
 
@@ -57,7 +57,7 @@
         .contact-info i {
             width: 40px;
             height: 40px;
-            background: #ffd700;
+            background: #e43a47;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -88,14 +88,14 @@
             
             align-items: center;
             justify-content: center;
-            color: #ffd700;
+            color: #e43a47;
             text-decoration: none;
             transition: all 0.3s ease;
             border: 1px solid rgba(255, 215, 0, 0.3);
         }
 
         .social-links a:hover {
-            background: #ffd700;
+            background:#e43a47;
             color: #1a1a1a;
             transform: translateY(-5px);
             box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
@@ -216,7 +216,7 @@
         }
 
         .linkscontainer .title {
-            color: #ffd700;
+            color: #e43a47;
             font-size: 24px;
             text-transform: uppercase;
             margin-bottom: 30px;
@@ -231,7 +231,7 @@
             bottom: -8px;
             width: 60px;
             height: 3px;
-            background: #ffd700;
+            background: #e43a47;
             border-radius: 2px;
         }
 
@@ -259,14 +259,14 @@
 
         .linkscontainer ul li a::before {
             content: '→';
-            color: #ffd700;
+            color:#e43a47;
             opacity: 0;
             transform: translateX(-10px);
             transition: all 0.3s ease;
         }
 
         .linkscontainer ul li a:hover {
-            color: #ffd700;
+            color:#e43a47;
             padding-left: 10px;
         }
 
@@ -276,7 +276,7 @@
         }
 
         .linkscontainer ul li.active a {
-            color: #ffd700;
+            color: #e43a47;
         }
 
         /* Animation for new links */
@@ -348,11 +348,11 @@
 
         .input-container:focus-within {
             background: rgba(255, 255, 255, 0.15);
-            box-shadow: 0 0 0 2px #ffd700;
+            box-shadow: 0 0 0 2px #e43a47;
         }
 
         .input-container i {
-            color: #ffd700;
+            color: #e43a47;
             font-size: 18px;
             padding: 0 15px;
         }
@@ -372,7 +372,7 @@
         }
 
         .newsletter-form button {
-            background: #ffd700;
+            background: #e43a47;
             color: #1a1a1a;
             padding: 12px 25px;
             border: none;
@@ -384,7 +384,7 @@
         }
 
         .newsletter-form button:hover {
-            background: #ffed4a;
+            background: #e43a47;
             transform: translateY(-2px);
         }
 
@@ -463,6 +463,10 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            width: 100%;
+            max-width: 1600px;
+            padding: 0 40px;
+            margin: 0 auto;
         }
 
         .logo img {
@@ -474,6 +478,8 @@
             display: flex;
             list-style: none;
             gap: 30px;
+            margin: 0;
+            padding: 0;
         }
 
         nav a {
@@ -482,10 +488,20 @@
             text-transform: capitalize;
             font-weight: 500;
             transition: 0.3s;
+            white-space: nowrap;
         }
 
         nav a:hover {
-            color: #ffd700;
+            color: #e43a47;
+        }
+
+        .logo {
+            flex-shrink: 0;
+        }
+
+        .auth-buttons {
+            margin: 0 20px;
+            flex-shrink: 0;
         }
 
         /* Mobile Navigation Styles */
@@ -593,6 +609,272 @@
         .hamburger.active div:nth-child(3) {
             transform: rotate(-45deg) translate(7px, -6px);
         }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1002;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            position: relative;
+            background: linear-gradient(145deg, #2a2a2a, #1a1a1a);
+            margin: 15% auto;
+            padding: 30px;
+            width: 90%;
+            max-width: 400px;
+            border-radius: 15px;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
+            color: white;
+            animation: modalSlide 0.4s ease;
+        }
+
+        @keyframes modalSlide {
+            from {
+                transform: translateY(-100px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .close {
+            position: absolute;
+            right: 20px;
+            top: 15px;
+            font-size: 28px;
+            cursor: pointer;
+            color: #e43a47;
+            transition: 0.3s;
+        }
+
+        .close:hover {
+            color: #ff4444;
+        }
+
+        .modal h2 {
+            color: #e43a47;
+            margin-bottom: 25px;
+            font-size: 24px;
+            text-align: center;
+        }
+
+        .form-group {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .form-group i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #e43a47;
+        }
+
+        .form-group .toggle-password {
+            left: auto;
+            right: 15px;
+            cursor: pointer;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 25px;
+            color: white;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #e43a47;
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+        }
+
+        .form-group input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        #signInForm button {
+            width: 100%;
+            padding: 12px;
+            background: #e43a47;
+            border: none;
+            border-radius: 25px;
+            color: #1a1a1a;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        #signInForm button:hover {
+            background: #e43a47;
+            transform: translateY(-2px);
+        }
+
+        .form-message {
+            margin-top: 15px;
+            text-align: center;
+            color: #e43a47;
+        }
+
+        @media screen and (max-width: 768px) {
+            .modal-content {
+                margin: 30% auto;
+                padding: 20px;
+            }
+
+            .form-group input {
+                padding: 10px 35px;
+                font-size: 14px;
+            }
+        }
+
+        .auth-buttons {
+            margin-left: 20px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .auth-buttons button {
+            background: transparent;
+            border: 2px solid white;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .auth-buttons button:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: white;
+            transition: all 0.4s ease;
+            z-index: -1;
+        }
+
+        .auth-buttons button:hover:before {
+            left: 0;
+        }
+
+        .auth-buttons button:hover {
+            color: #1a1a1a;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 255, 255, 0.3);
+        }
+
+        .auth-buttons button:active {
+            transform: translateY(0);
+        }
+
+        .auth-buttons button i {
+            font-size: 16px;
+        }
+
+        /* Add glowing effect */
+        .auth-buttons .sign-in {
+            animation: glow 2s infinite alternate;
+        }
+
+        @keyframes glow {
+            from {
+                box-shadow: 0 0 5px rgba(255, 255, 255, 0.5),
+                            0 0 10px rgba(255, 255, 255, 0.5);
+            }
+            to {
+                box-shadow: 0 0 10px rgba(255, 255, 255, 0.5),
+                            0 0 20px rgba(255, 255, 255, 0.5);
+            }
+        }
+
+        /* Responsive styles */
+        @media screen and (max-width: 768px) {
+            .auth-buttons {
+                margin-left: 10px;
+            }
+
+            .auth-buttons button {
+                padding: 6px 15px;
+                font-size: 12px;
+            }
+
+            .auth-buttons button i {
+                font-size: 14px;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .auth-buttons button span {
+                display: none; /* Hide text on very small screens */
+            }
+
+            .auth-buttons button {
+                padding: 8px;
+                width: 35px;
+                height: 35px;
+                justify-content: center;
+            }
+
+            .auth-buttons button i {
+                margin: 0;
+            }
+        }
+
+        /* Update responsive styles */
+        @media screen and (max-width: 1400px) {
+            header .container {
+                padding: 0 30px;
+            }
+            
+            nav ul {
+                gap: 25px;
+            }
+        }
+
+        @media screen and (max-width: 1200px) {
+            header .container {
+                padding: 0 20px;
+            }
+            
+            nav ul {
+                gap: 20px;
+            }
+        }
+
+        @media screen and (max-width: 992px) {
+            nav ul {
+                gap: 15px;
+            }
+        }
+    </style>
+    <!-- Add Font Awesome for icons -->
     </style>
     <!-- Add Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -605,6 +887,13 @@
                 <div class="logo">
                     <img src="images/smart logo.JPG" alt="NGO logo">
                 </div> 
+                
+                <div class="auth-buttons">
+                    <button class="sign-in">
+                        <i class="fas fa-user-plus"></i>
+                        <span>Sign Up</span>
+                    </button>
+                </div>
                 
                 <div class="hamburger">
                     <div></div>
@@ -706,6 +995,30 @@
         </div>
     </div>
  </footer>
+
+<div class="modal" id="signInModal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Sign Up</h2>
+        <form id="signInForm">
+            <div class="form-group">
+                <i class="fas fa-user"></i>
+                <input type="text" id="username" placeholder="Username" required>
+            </div>
+            <div class="form-group">
+                <i class="fas fa-envelope"></i>
+                <input type="email" id="email" placeholder="Email" required>
+            </div>
+            <div class="form-group">
+                <i class="fas fa-lock"></i>
+                <input type="password" id="password" placeholder="Password" required>
+                <i class="fas fa-eye toggle-password"></i>
+            </div>
+            <button type="submit">Sign Up</button>
+        </form>
+        <p class="form-message"></p>
+    </div>
+</div>
 
 <script>
     // Get references to elements
@@ -987,6 +1300,86 @@
             hamburger.classList.remove('active');
             navMenu.classList.remove('active');
         }
+    });
+
+    // Modal functionality
+    const modal = document.getElementById('signInModal');
+    const signInButton = document.querySelector('.sign-in');
+    const closeButton = document.querySelector('.close');
+    const signInForm = document.getElementById('signInForm');
+    const formMessage = document.querySelector('.form-message');
+
+    // Show modal when clicking sign in button
+    signInButton.addEventListener('click', () => {
+        modal.style.display = 'block';
+        document.body.style.overflow = 'hidden'; // Prevent scrolling
+    });
+
+    // Close modal functions
+    function closeModal() {
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto'; // Enable scrolling
+        signInForm.reset();
+        formMessage.textContent = '';
+    }
+
+    closeButton.addEventListener('click', closeModal);
+
+    // Close modal when clicking outside
+    window.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            closeModal();
+        }
+    });
+
+    // Toggle password visibility
+    const togglePassword = document.querySelector('.toggle-password');
+    const passwordInput = document.getElementById('password');
+
+    togglePassword.addEventListener('click', () => {
+        const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+        passwordInput.setAttribute('type', type);
+        togglePassword.classList.toggle('fa-eye');
+        togglePassword.classList.toggle('fa-eye-slash');
+    });
+
+    // Form submission
+    signInForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        const username = document.getElementById('username').value;
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+
+        // Validate email
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            formMessage.textContent = 'Please enter a valid email address';
+            formMessage.style.color = '#ff4444';
+            return;
+        }
+
+        // Validate password (minimum 6 characters)
+        if (password.length < 6) {
+            formMessage.textContent = 'Password must be at least 6 characters long';
+            formMessage.style.color = '#ff4444';
+            return;
+        }
+
+        // Simulate form submission
+        formMessage.textContent = 'Signing in...';
+        formMessage.style.color = '#ffd700';
+
+        // Simulate API call
+        setTimeout(() => {
+            formMessage.textContent = 'Sign in successful!';
+            formMessage.style.color = '#4CAF50';
+            
+            // Close modal after successful sign in
+            setTimeout(() => {
+                closeModal();
+            }, 1000);
+        }, 1500);
     });
 </script>
 
